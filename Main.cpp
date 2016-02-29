@@ -1,5 +1,5 @@
-#include "Game/Game.hpp"
-#include "PhysicEngine/PhysicEngine.hpp"
+#include "Engines/GameEngine/GameEngine.hpp"
+#include "Engines/PhysicEngine/PhysicEngine.hpp"
 
 int main()
 {
