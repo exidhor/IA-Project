@@ -20,7 +20,7 @@ namespace fme
 	{
 	public:
 		Animation(TextureCharacteristics* animationCharacteristic,
-			unsigned int layerLevel);
+					unsigned int layerLevel);
 		Animation(Animation const& animation);
 		~Animation();
 
@@ -49,18 +49,18 @@ namespace fme
 		virtual bool isSprite();
 
 	private:
-		bool increaseAnimationIndex();
-		void applyTextureOnVertices();
+		bool			increaseAnimationIndex();
+		void			applyTextureOnVertices();
 
-		Timer timer;
-		unsigned int indexCulumn;
-		unsigned int indexLine;
+		Timer			m_timer;
+		unsigned int	m_indexCulumn;
+		unsigned int	m_indexLine;
 
 		//state
 
-		bool isOn;
-		bool repeated;
-		bool continueSequence;
+		bool			m_isOn;
+		bool			m_repeated;
+		bool			m_continueSequence;
 	};
 }
 

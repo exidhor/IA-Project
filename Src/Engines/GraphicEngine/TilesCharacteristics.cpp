@@ -5,10 +5,9 @@ fme::TilesCharacteristics::TilesCharacteristics(
 	std::vector <fme::Vector2f> newTexturePoints,
 	double newTimePerFrame)
 {
-	tileSize = newtileSize;
-	tileSize = newtileSize;
-	texturePoints = newTexturePoints;
-	timePerFrame = newTimePerFrame;
+	m_tileSize = newtileSize;
+	m_texturePoints = newTexturePoints;
+	m_timePerFrame = newTimePerFrame;
 }
 
 fme::TilesCharacteristics::TilesCharacteristics(
@@ -21,25 +20,25 @@ fme::TilesCharacteristics::TilesCharacteristics(
 
 fme::TilesCharacteristics::~TilesCharacteristics()
 {
-	texturePoints.clear();
+	m_texturePoints.clear();
 }
 
 fme::Vector2f const& fme::TilesCharacteristics::getTileSize()
 {
-	return tileSize;
+	return m_tileSize;
 }
 
 fme::Vector2f const& fme::TilesCharacteristics::getTexturePoints(unsigned int index)
 {
-	return texturePoints[index];
+	return m_texturePoints[index];
 }
 
 double fme::TilesCharacteristics::getTimePerFrame()
 {
-	return timePerFrame;
+	return m_timePerFrame;
 }
 
 unsigned int fme::TilesCharacteristics::getArraySize()
 {
-	return texturePoints.size();
+	return m_texturePoints.size();
 }

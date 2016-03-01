@@ -30,27 +30,38 @@ namespace fme
 
 		~TileSet();
 
-		void loading(unsigned int maxSizeVerticesArray, unsigned int numberOfLayerLevel);
+		void			loading(
+							unsigned int maxSizeVerticesArray,
+							unsigned int numberOfLayerLevel);
 
-		void clearAllLayers();
-		void clearLayer(unsigned int layerLevel);
+		void			clearAllLayers();
+		void			clearLayer(unsigned int layerLevel);
 
-		void addVertices(sf::Vertex vertices[4], unsigned int layerLevel);
-		void assembleContinousArray();
-		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+		void			addVertices(
+							sf::Vertex vertices[4],
+							unsigned int layerLevel);
+
+		void			assembleContinousArray();
+
+		virtual void	draw(sf::RenderTarget& target,
+							sf::RenderStates states) const;
 
 		void setTemporary(bool state);
 
 	private:
-		sf::Texture* textureTile;
-		std::vector<sf::Vertex> verticesArrayToDraw;
-		unsigned int maxSizeVerticesArray;
-		unsigned int numberOfLayerLevel;
+
+		bool verifyLevel(int level);
+		bool verifyIndice(int indice);
+
+		sf::Texture*			m_textureTile;
+		std::vector<sf::Vertex>	m_verticesArrayToDraw;
+		unsigned int			m_maxSizeVerticesArray;
+		unsigned int			m_numberOfLayerLevel;
 		// array of the positions of the last element for the different vertex arrays
 		// (has for value -1 if the array is void)
-		int* arrayOfCurrentIndices;
-		int continousIndexArray;
-		bool isContinous;
-		bool isTemporary;
+		int*					m_arrayOfCurrentIndices;
+		int						m_continousIndexArray;
+		bool					m_isContinous;
+		bool					m_isTemporary;
 	};
 }

@@ -32,10 +32,10 @@ namespace fme
 			sf::Transform & transformationPoint);
 
 	private:
-		bool calculateEndOfRotation(float & angleRotation, bool speedUpperThanZero);
+		bool	calculateEndOfRotation(float & angleRotation, bool speedUpperThanZero);
 
-		float speedPerSecond;
-		float finalAngle;
-		float angleDegreeAdvancement;
+		float	m_speedPerSecond;
+		float	m_finalAngle;
+		float	m_angleDegreeAdvancement;
 	};
 }

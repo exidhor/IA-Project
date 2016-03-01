@@ -21,17 +21,17 @@ namespace fme
 	{
 	public:
 		Timer(double startTime);
-		bool removeTime(double timeToRemove); //return true if it reach 0
-		void restart(double newStartTime); // restart with the newTime for timeDisplay
-		void restart(); //restart with the actual timeDisplay
-		void softRestart(); //restart with substracting the old timeLeft
+		bool	removeTime(double timeToRemove); //return true if it reach 0
+		void	restart(double newStartTime); // restart with the newTime for timeDisplay
+		void	restart(); //restart with the actual timeDisplay
+		void	softRestart(); //restart with substracting the old timeLeft
 
-		void setStartTime(double newStartTime);
-		double getStartTime() const;
-		double getTimeLeft();
+		void	setStartTime(double newStartTime);
+		double	getStartTime() const;
+		double	getTimeLeft();
 
 	private:
-		double startTime;
-		double timeLeft;
+		double m_startTime;
+		double m_timeLeft;
 	};
 }

@@ -22,26 +22,26 @@ namespace fme
 	{
 	public:
 		TextureCharacteristics(
-			std::vector <TilesCharacteristics*> tilesCharacteristics,
-			TileSet* tileSet);
+						std::vector <TilesCharacteristics*> tilesCharacteristics,
+						TileSet* tileSet);
 		TextureCharacteristics(
-			TilesCharacteristics* tileCharacteristics,
-			TileSet* tileSet);
+						TilesCharacteristics* tileCharacteristics,
+						TileSet* tileSet);
 
 		~TextureCharacteristics();
 
-		void addTilesCharacteristics(TilesCharacteristics* newArray);
+		void		addTilesCharacteristics(TilesCharacteristics* newArray);
 
 		//Getters
-		TileSet* getTileSet() const;
-		Vector2f const& getTileSize(unsigned int indexTileCharac)  const;
-		Vector2f const& getTexturePoints(unsigned int indexCulumn, unsigned int indexLine)  const;
-		unsigned int getLineSizeOf(unsigned int indexTileCharac)  const;
-		unsigned int getCulumnSize()  const;
-		double getTimePerFrame(unsigned int indexTileCharac)  const;
+		TileSet*	getTileSet() const;
+		Vector2f	const& getTileSize(unsigned int indexTileCharac)  const;
+		Vector2f	const& getTexturePoints(unsigned int indexCulumn, unsigned int indexLine)  const;
+		unsigned	int getLineSizeOf(unsigned int indexTileCharac)  const;
+		unsigned	int getCulumnSize()  const;
+		double		getTimePerFrame(unsigned int indexTileCharac)  const;
 
 	private:
-		std::vector <TilesCharacteristics*> arrayOfTileCharacteristic;
-		TileSet* tileSet;
+		std::vector <TilesCharacteristics*> m_arrayOfTileCharacteristic;
+		TileSet*							m_tileSet;
 	};
 }

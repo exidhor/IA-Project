@@ -26,8 +26,8 @@ namespace fme
 
 		// getters
 
-		Vector2f getPosition();
-		sf::FloatRect const& getGlobalBounds();
+		Vector2f		getPosition();
+		sf::FloatRect	const& getGlobalBounds();
 
 		// setters
 
@@ -38,13 +38,13 @@ namespace fme
 
 		void translate(Vector2f const& offset, sf::Transform & transformation);
 		void rotate(float angleOfRotation, Vector2f const& originOfTheRotation,
-			sf::Transform & transformation);
+					sf::Transform & transformation);
 		void applyTranformation(sf::Transform const& transformation);
 
 	private:
 		void recalculateGlobalBounds();
 
-		sf::Vertex vertices[4];
-		sf::FloatRect globalBounds;
+		sf::Vertex		m_vertices[4];
+		sf::FloatRect	m_globalBounds;
 	};
 }

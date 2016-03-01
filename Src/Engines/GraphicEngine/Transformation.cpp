@@ -2,9 +2,9 @@
 
 fme::Transformation::Transformation()
 {
-	quadVertices = NULL;
-	isInfinite = false;
-	isOn = false;
+	m_quadVertices = NULL;
+	m_isInfinite = false;
+	m_isOn = false;
 }
 
 fme::Transformation::~Transformation()
@@ -14,20 +14,20 @@ fme::Transformation::~Transformation()
 
 void fme::Transformation::initAttribute(fme::QuadVertices* newQuadVertices)
 {
-	quadVertices = newQuadVertices;
+	m_quadVertices = newQuadVertices;
 }
 
 void fme::Transformation::start()
 {
-	isOn = true;
+	m_isOn = true;
 }
 
 void fme::Transformation::stop()
 {
-	isOn = false;
+	m_isOn = false;
 }
 
 void fme::Transformation::setIsInfinite(bool state)
 {
-	isInfinite = state;
+	m_isInfinite = state;
 }

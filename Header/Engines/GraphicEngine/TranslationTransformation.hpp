@@ -22,18 +22,22 @@ namespace fme
 		TranslationTransformation();
 
 		void initAttribute(QuadVertices* quadVertices);
-		void initByTargetPoint(double timeUntilTheEnd, Vector2f const& origin,
+		void initByTargetPoint(
+			double timeUntilTheEnd,
+			Vector2f const& origin,
 			Vector2f const& targetPoint);
-		void initBySpeed(double timeUntilTheEnd, Vector2f const& speedPerSecond);
+		void initBySpeed(double timeUntilTheEnd,
+			Vector2f const& speedPerSecond);
 
-		bool actualize(double timeSpent, Vector2f & origin,
+		bool actualize(double timeSpent,
+			Vector2f & origin,
 			sf::Transform & transformation);
 
 	private:
-		Timer timer;
-		Vector2f targetPoint;
-		float speedAbsciss;
-		float speedOrdinate;
-		bool isDeterminedByTime;
+		Timer		m_timer;
+		Vector2f	m_targetPoint;
+		float		m_speedAbscissa;
+		float		m_speedOrdinate;
+		bool		m_isDeterminedByTime;
 	};
 }

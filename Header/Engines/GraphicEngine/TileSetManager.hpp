@@ -17,24 +17,25 @@ namespace fme
 	class TileSetManager
 	{
 	public:
-		// Constructor
 		TileSetManager();
-
-		// Destructor
 		~TileSetManager();
 
-		// Methods
-		bool addTileSet(std::string const& key, std::string const& path);
-		void loadTileSet(std::string const& key, unsigned int maxSizeVertexArray,
-			unsigned int level);
-		void assembleContinousArrays();
-		void clearAllTileSets();
+		bool		addTileSet(
+						std::string const& key,
+						std::string const& path);
 
-		// Getter
-		TileSet * getTileSet(std::string const& key);
+		void		loadTileSet(
+						std::string const& key,
+						unsigned int maxSizeVertexArray,
+						unsigned int level);
 
+		void		assembleContinousArrays();
+
+		void		clearAllTileSets();
+
+		TileSet*	getTileSet(std::string const& key);
 
 	private:
-		std::map <std::string, TileSet*> tileSetMap;
+		std::map <std::string, TileSet*> m_tileSetMap;
 	};
 }

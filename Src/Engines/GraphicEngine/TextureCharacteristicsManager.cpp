@@ -35,24 +35,24 @@ bool fme::TextureCharacteristicsManager::addTextureCharacteristics(
 	double timePerFrame,
 	fme::TileSet* tileSetTarget)
 {
-	fme::TilesCharacteristics* tilesCharacteritics = new fme::TilesCharacteristics(tileSize, texturePoints,
-		timePerFrame);
+	fme::TilesCharacteristics* tilesCharacteritics = new fme::TilesCharacteristics(
+																		tileSize, 
+																		texturePoints,
+																		timePerFrame);
 
-	textureCharacteristicsIndex = textureCharacteristics.find(key);
+	m_textureCharacteristicsIndex = m_textureCharacteristics.find(key);
 
-	if (textureCharacteristicsIndex != textureCharacteristics.end()) {
-		textureCharacteristicsIndex->second->addTilesCharacteristics(tilesCharacteritics);
+	if (m_textureCharacteristicsIndex != m_textureCharacteristics.end()) {
+		m_textureCharacteristicsIndex->second->addTilesCharacteristics(tilesCharacteritics);
 		return true;
 	}
 	else
 	{
-		textureCharacteristics.insert(std::pair <std::string, fme::TextureCharacteristics*>(
+		m_textureCharacteristics.insert(std::pair <std::string, fme::TextureCharacteristics*>(
 			key,
 			new fme::TextureCharacteristics(
-				std::vector <TilesCharacteristics*>(1, tilesCharacteritics),
-				tileSetTarget)
-			)
-		);
+					std::vector <TilesCharacteristics*>(1, tilesCharacteritics),
+					tileSetTarget)));
 
 		return false;
 	}
@@ -72,5 +72,5 @@ bool fme::TextureCharacteristicsManager::addTextureCharacteristics(
 // Getter
 fme::TextureCharacteristics* fme::TextureCharacteristicsManager::getTextureCharacteristics(std::string key)
 {
-	return textureCharacteristics[key];
+	return m_textureCharacteristics[key];
 }

@@ -2,8 +2,9 @@
 
 fme::RotationTransformation::RotationTransformation()
 {
-	finalAngle = 0;
-	angleDegreeAdvancement = 0;
+	m_finalAngle = 0;
+	m_angleDegreeAdvancement = 0;
+	m_speedPerSecond = 0;
 }
 
 fme::RotationTransformation::~RotationTransformation()
@@ -11,16 +12,16 @@ fme::RotationTransformation::~RotationTransformation()
 	//void
 }
 
-void fme::RotationTransformation::initAttribute(fme::QuadVertices* quadVertices)
+void fme::RotationTransformation::initAttribute(fme::QuadVertices* m_quadVertices)
 {
-	Transformation::initAttribute(quadVertices);
+	Transformation::initAttribute(m_quadVertices);
 }
 
 
 void fme::RotationTransformation::initRotateByTime(float newSpeedPerSecond, double timeUntilTheEnd)
 {
-	finalAngle = (float)(speedPerSecond * timeUntilTheEnd);
-	speedPerSecond = newSpeedPerSecond;
+	m_finalAngle = (float)(m_speedPerSecond * timeUntilTheEnd);
+	m_speedPerSecond = newSpeedPerSecond;
 }
 
 void fme::RotationTransformation::initRotateByAngle(float newSpeedPerSecond, float newFinalAngle)
@@ -32,31 +33,31 @@ void fme::RotationTransformation::initRotateByAngle(float newSpeedPerSecond, flo
 		int nbOfTurn = (int)(newFinalAngle / -360);
 		newFinalAngle = nbOfTurn * 360 + endRotation + floatPart;
 	}
-	finalAngle = newFinalAngle;
-	angleDegreeAdvancement = 0;
-	speedPerSecond = newSpeedPerSecond;
+	m_finalAngle = newFinalAngle;
+	m_angleDegreeAdvancement = 0;
+	m_speedPerSecond = newSpeedPerSecond;
 }
 
 bool fme::RotationTransformation::actualize(double timeSpent, fme::Vector2f const& origin
 	, sf::Transform & transformationPoint)
 {
-	if (isOn)
+	if (m_isOn)
 	{
 		bool isFinish = false;
-		float angleRotation = speedPerSecond * (float)timeSpent;
+		float angleRotation = m_speedPerSecond * (float)timeSpent;
 
-		angleDegreeAdvancement += angleRotation;
-		if (speedPerSecond > 0 && angleDegreeAdvancement >= finalAngle)
+		m_angleDegreeAdvancement += angleRotation;
+		if (m_speedPerSecond > 0 && m_angleDegreeAdvancement >= m_finalAngle)
 		{
 			isFinish = calculateEndOfRotation(angleRotation, true);
 		}
-		else if (speedPerSecond < 0 && angleDegreeAdvancement <= -finalAngle)
+		else if (m_speedPerSecond < 0 && m_angleDegreeAdvancement <= -m_finalAngle)
 		{
 			isFinish = calculateEndOfRotation(angleRotation, false);
 		}
 
-		quadVertices->rotate(angleRotation, origin, transformationPoint);
-		quadVertices->applyTranformation(transformationPoint);
+		m_quadVertices->rotate(angleRotation, origin, transformationPoint);
+		m_quadVertices->applyTranformation(transformationPoint);
 
 		return isFinish;
 	}
@@ -65,30 +66,30 @@ bool fme::RotationTransformation::actualize(double timeSpent, fme::Vector2f cons
 
 bool fme::RotationTransformation::calculateEndOfRotation(float & angleRotation, bool speedUpperThanZero)
 {
-	if (isInfinite)
+	if (m_isInfinite)
 	{
 		if (speedUpperThanZero)
 		{
-			angleDegreeAdvancement -= finalAngle;
-			angleDegreeAdvancement = 0;
+			m_angleDegreeAdvancement -= m_finalAngle;
+			m_angleDegreeAdvancement = 0;
 		}
 		else
 		{
-			angleDegreeAdvancement += finalAngle;
-			angleDegreeAdvancement;
+			m_angleDegreeAdvancement += m_finalAngle;
+			m_angleDegreeAdvancement;
 		}
 		return false;
 	}
 
 	if (speedUpperThanZero)
 	{
-		angleRotation -= angleDegreeAdvancement - finalAngle;
+		angleRotation -= m_angleDegreeAdvancement - m_finalAngle;
 	}
 	else
 	{
-		angleRotation -= finalAngle - angleDegreeAdvancement;
+		angleRotation -= m_finalAngle - m_angleDegreeAdvancement;
 	}
-	isOn = false;
+	m_isOn = false;
 
 	return true;
 }

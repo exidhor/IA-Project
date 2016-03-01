@@ -2,35 +2,107 @@
 
 fme::GraphicEngine::GraphicEngine()
 {
-	tileSetManager = NULL;
-	textureCharactertisticsManager = NULL;
-	ressourceManager = NULL;
-	tileSetDisplayer = NULL;
+	m_tileSetManager = NULL;
+	m_textureCharactertisticsManager = NULL;
+	m_ressourceManager = NULL;
+	m_tileSetDisplayer = NULL;
+	m_frameTime = 0;
+	m_mergeFrameTime = 0;
+	m_windowIsOpen = false;
 }
 
 fme::GraphicEngine::~GraphicEngine()
 {
-	delete tileSetDisplayer;
-	delete ressourceManager;
-	delete textureCharactertisticsManager;
-	delete tileSetManager;
+	if (m_tileSetDisplayer != NULL)
+	{
+		delete m_tileSetDisplayer;
+	}
+
+	if (m_ressourceManager != NULL)
+	{
+		delete m_ressourceManager;
+	}
+
+	if (m_textureCharactertisticsManager != NULL)
+	{
+		delete m_textureCharactertisticsManager;
+	}
+
+	if (m_tileSetManager != NULL)
+	{
+		delete m_tileSetManager;
+	}
+
+	if (m_window != NULL)
+	{
+		delete m_window;
+	}
 }
 
-// ----------- initialization ---------------------------------------------------------
+// ----------- initialization ------------------------------------------------------
 
 void fme::GraphicEngine::init()
 {
-	tileSetManager = new fme::TileSetManager();
-	textureCharactertisticsManager = new fme::TextureCharacteristicsManager();
-	ressourceManager = new fme::RessourceManager();
-	tileSetDisplayer = new fme::TileSetsDisplayer();
+	m_tileSetManager = new fme::TileSetManager();
+	m_textureCharactertisticsManager = new fme::TextureCharacteristicsManager();
+	m_ressourceManager = new fme::RessourceManager();
+	m_tileSetDisplayer = new fme::TileSetsDisplayer();
 }
 
-// --------------- creation ---------------------------------------------------
+void fme::GraphicEngine::openWindow(std::string const& title)
+{
+	m_window = new sf::RenderWindow(sf::VideoMode(1000, 600), title);
+	m_windowIsOpen = true;
+	m_window->setActive(false);
+}
+
+void fme::GraphicEngine::closeWindow()
+{
+	m_windowIsOpen = false;
+}
+
+void fme::GraphicEngine::setFrameRate(float framePerSecond)
+{
+	m_frameTime = 1. / framePerSecond;
+	m_mergeFrameTime = m_frameTime * (0.7 / 60);
+}
+
+// ----------------- use ----------------------------------------------------------
+
+void fme::GraphicEngine::run(int framePerSecond)
+{
+	setFrameRate(framePerSecond);
+
+	sf::Clock clock;
+	double timeSpent = 0;
+	double offsetTime = 0;
+
+	while (m_windowIsOpen)
+	{
+		timeSpent = clock.getElapsedTime().asSeconds();
+		offsetTime = m_frameTime - (timeSpent + m_mergeFrameTime);
+
+		if (offsetTime < 0)
+		{
+			update(timeSpent);
+
+			m_window->clear();
+			m_window->draw(*this);
+			m_window->display();
+			clock.restart();
+		}
+		else
+		{
+			std::this_thread::sleep_for(std::chrono::microseconds((long)offsetTime * 1000000));
+		}
+	}
+}
+
+// --------------- creation -------------------------------------------------------
 
 void fme::GraphicEngine::addTileSet(std::string const& key, std::string const& path)
 {
-	if (!tileSetManager->addTileSet(key, path))
+	if (!m_tileSetManager->addTileSet(key, path))
 	{
 		std::cerr << "ERROR during the loading of the texture\n"
 			<< "\tkey :\t" << key
@@ -38,8 +110,8 @@ void fme::GraphicEngine::addTileSet(std::string const& key, std::string const& p
 	}
 	else
 	{
-		ressourceManager->createKey(key);
-		tileSetDisplayer->addTileSet(tileSetManager->getTileSet(key));
+		m_ressourceManager->createKey(key);
+		m_tileSetDisplayer->addTileSet(m_tileSetManager->getTileSet(key));
 	}
 }
 
@@ -47,7 +119,16 @@ void fme::GraphicEngine::initTileSetLayers(std::string const& key,
 	unsigned int maxSizeArray,
 	unsigned int numberOfLayer)
 {
-	tileSetManager->loadTileSet(key, maxSizeArray, numberOfLayer);
+	m_tileSetManager->loadTileSet(key, maxSizeArray, numberOfLayer);
+}
+
+void fme::GraphicEngine::addTileSet(std::string const& key, 
+	std::string const& path,
+	unsigned int maxSizeArray,
+	unsigned int numberOfLayer)
+{
+	addTileSet(key, path);
+	initTileSetLayers(key, maxSizeArray, numberOfLayer);
 }
 
 void fme::GraphicEngine::addTextureCharacteristics(
@@ -57,17 +138,17 @@ void fme::GraphicEngine::addTextureCharacteristics(
 	std::vector <fme::Vector2f> texturePoints,
 	double timePerFrame)
 {
-	if (!textureCharactertisticsManager->addTextureCharacteristics(
+	if (!m_textureCharactertisticsManager->addTextureCharacteristics(
 												spriteKey,
 												tileSize,
 												texturePoints,
 												timePerFrame,
-												tileSetManager->getTileSet(tileSetKey)
+												m_tileSetManager->getTileSet(tileSetKey)
 												))
 	{
-		if (ressourceManager->createKey(spriteKey))
+		if (m_ressourceManager->createKey(spriteKey))
 		{
-			std::cerr << "ERROR : duplicating keys in ressourceManager\n"
+			std::cerr << "ERROR : duplicating keys in m_ressourceManager\n"
 				<< "\tkey :\t" << spriteKey << std::endl;
 		}
 	}
@@ -79,16 +160,16 @@ void fme::GraphicEngine::addTextureCharacteristics(
 	fme::Vector2f const& tileSize,
 	fme::Vector2f const& oneTexturePoint)
 {
-	if (!textureCharactertisticsManager->addTextureCharacteristics(
+	if (!m_textureCharactertisticsManager->addTextureCharacteristics(
 											spriteKey,
 											tileSize,
 											oneTexturePoint,
-											tileSetManager->getTileSet(tileSetKey)
+											m_tileSetManager->getTileSet(tileSetKey)
 											))
 	{
-		if (ressourceManager->createKey(spriteKey))
+		if (m_ressourceManager->createKey(spriteKey))
 		{
-			std::cerr << "ERROR : duplicating keys in ressourceManager\n"
+			std::cerr << "ERROR : duplicating keys in m_ressourceManager\n"
 				<< "\tkey :\t" << spriteKey << std::endl;
 		}
 	}
@@ -100,9 +181,9 @@ void fme::GraphicEngine::addSprite(std::string const& key,
 {
 	for (unsigned int i = 0; i < numberOfElements; i++)
 	{
-		ressourceManager->createSprite(
+		m_ressourceManager->createSprite(
 			key,
-			textureCharactertisticsManager->getTextureCharacteristics(key),
+			m_textureCharactertisticsManager->getTextureCharacteristics(key),
 			layerLevel
 			);
 	}
@@ -114,9 +195,9 @@ void fme::GraphicEngine::addAnimation(std::string const& key,
 {
 	for (unsigned int i = 0; i < numberOfElements; i++)
 	{
-		ressourceManager->createAnimation(
+		m_ressourceManager->createAnimation(
 			key,
-			textureCharactertisticsManager->getTextureCharacteristics(key),
+			m_textureCharactertisticsManager->getTextureCharacteristics(key),
 			layerLevel
 			);
 	}
@@ -124,12 +205,12 @@ void fme::GraphicEngine::addAnimation(std::string const& key,
 
 fme::Sprite* fme::GraphicEngine::getFreeSprite(std::string const& key)
 {
-	return ressourceManager->getFreeSprite(key);
+	return m_ressourceManager->getFreeSprite(key);
 }
 
 void fme::GraphicEngine::freeSpecificSprite(std::string const& key, unsigned int id)
 {
-	if (!ressourceManager->freeSpecificSprite(key, id))
+	if (!m_ressourceManager->freeSpecificSprite(key, id))
 	{
 		std::cerr << "ERROR during the freeing of the sprite\n"
 			<< "\tkey :\t" << key
@@ -138,19 +219,20 @@ void fme::GraphicEngine::freeSpecificSprite(std::string const& key, unsigned int
 }
 
 // -------------- animation gestion during the game ---------------------------------
+
 void fme::GraphicEngine::update(double time)
 {
-	tileSetManager->clearAllTileSets();
-	ressourceManager->updateAnimations(time);
-	tileSetManager->assembleContinousArrays();
+	m_tileSetManager->clearAllTileSets();
+	m_ressourceManager->updateAnimations(time);
+	m_tileSetManager->assembleContinousArrays();
 }
 
 void fme::GraphicEngine::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-	tileSetDisplayer->draw(target, states);
+	m_tileSetDisplayer->draw(target, states);
 }
 
 
 fme::RessourceManager * fme::GraphicEngine::getResourceManager() {
-	return ressourceManager;
+	return m_ressourceManager;
 }

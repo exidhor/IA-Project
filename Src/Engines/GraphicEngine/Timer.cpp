@@ -2,14 +2,14 @@
 
 fme::Timer::Timer(double newStartTime)
 {
-	startTime = newStartTime;
-	timeLeft = startTime;
+	m_startTime = newStartTime;
+	m_timeLeft = m_startTime;
 }
 
 bool fme::Timer::removeTime(double timeToRemove)
 {
-	timeLeft -= timeToRemove;
-	if (timeLeft <= 0)
+	m_timeLeft -= timeToRemove;
+	if (m_timeLeft <= 0)
 	{
 		return true;
 	}
@@ -18,38 +18,38 @@ bool fme::Timer::removeTime(double timeToRemove)
 
 void fme::Timer::restart(double newStartTime)
 {
-	timeLeft = newStartTime;
+	m_timeLeft = newStartTime;
 }
 
 void fme::Timer::setStartTime(double newStartTime)
 {
-	startTime = newStartTime;
-	timeLeft = startTime;
+	m_startTime = newStartTime;
+	m_timeLeft = m_startTime;
 }
 
 double fme::Timer::getStartTime() const
 {
-	return startTime;
+	return m_startTime;
 }
 
 void fme::Timer::restart()
 {
-	timeLeft = startTime;
+	m_timeLeft = m_startTime;
 }
 
 void fme::Timer::softRestart()
 {
-	timeLeft += startTime;
-	//if startTime is bigger than timeLeft, it means that
+	m_timeLeft += m_startTime;
+	//if m_startTime is bigger than m_timeLeft, it means that
 	//the program is running slower than the animation, so we reset
-	// the timeCounter "timeLeft"
-	if (timeLeft <= 0)
+	// the timeCounter "m_timeLeft"
+	if (m_timeLeft <= 0)
 	{
-		timeLeft = startTime;
+		m_timeLeft = m_startTime;
 	}
 }
 
 double fme::Timer::getTimeLeft()
 {
-	return timeLeft;
+	return m_timeLeft;
 }

@@ -23,17 +23,16 @@ namespace fme
 		Transformation();
 		virtual ~Transformation();
 
-		void initAttribute(QuadVertices* quadVertices);
+		void			initAttribute(QuadVertices* quadVertices);
 
-		virtual void start();
+		virtual void	start();
+		void			stop();
 
-		void stop();
-
-		void setIsInfinite(bool state);
+		void			setIsInfinite(bool state);
 
 	protected:
-		bool isOn;
-		bool isInfinite;
-		QuadVertices* quadVertices;
+		bool			m_isOn;
+		bool			m_isInfinite;
+		QuadVertices*	m_quadVertices;
 	};
 }

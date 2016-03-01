@@ -21,23 +21,22 @@ namespace fme
 		TilesCharacteristics(
 			Vector2f const& tileSize,
 			std::vector <Vector2f> texturePoints,
-			double timePerFrame
-		);
+			double timePerFrame);
+
 		TilesCharacteristics(
 			Vector2f const& tileSize,
-			Vector2f const& oneTexturePoint
-		);
+			Vector2f const& oneTexturePoint);
 
 		~TilesCharacteristics();
 
 		Vector2f const& getTileSize();
 		Vector2f const& getTexturePoints(unsigned int index);
-		unsigned int getArraySize();
-		double getTimePerFrame();
+		unsigned int	getArraySize();
+		double			getTimePerFrame();
 
 	private:
-		Vector2f tileSize;
-		std::vector <Vector2f> texturePoints;
-		double timePerFrame;
+		Vector2f				m_tileSize;
+		std::vector <Vector2f>	m_texturePoints;
+		double					m_timePerFrame;
 	};
 }

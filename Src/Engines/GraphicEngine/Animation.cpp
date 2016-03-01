@@ -9,16 +9,16 @@ fme::Animation::Animation(fme::TextureCharacteristics* newTextureCharacteristics
 
 : fme::Sprite(newTextureCharacteristics, newLayerLevel),
 
-	timer(newTextureCharacteristics->getTimePerFrame(0))
+	m_timer(newTextureCharacteristics->getTimePerFrame(0))
 {
-	textureCharacteristics = newTextureCharacteristics;
+	m_textureCharacteristics = newTextureCharacteristics;
 
-	indexLine = 0;
-	indexCulumn = 0;
+	m_indexLine = 0;
+	m_indexCulumn = 0;
 
-	isOn = false;
-	repeated = false;
-	continueSequence = false;
+	m_isOn = false;
+	m_repeated = false;
+	m_continueSequence = false;
 }
 
 /*!
@@ -27,15 +27,15 @@ fme::Animation::Animation(fme::TextureCharacteristics* newTextureCharacteristics
 */
 fme::Animation::Animation(Animation const& animation)
 	: fme::Sprite(animation),
-	timer(animation.timer.getStartTime())
+	m_timer(animation.m_timer.getStartTime())
 {
-	textureCharacteristics = animation.textureCharacteristics;
+	m_textureCharacteristics = animation.m_textureCharacteristics;
 
-	indexLine = 0;
-	indexCulumn = 0;
-	isOn = false;
-	repeated = false;
-	continueSequence = false;
+	m_indexLine = 0;
+	m_indexCulumn = 0;
+	m_isOn = false;
+	m_repeated = false;
+	m_continueSequence = false;
 }
 
 /*!
@@ -60,20 +60,20 @@ bool fme::Animation::actualize(double timeSpent)
 {
 	fme::Sprite::actualize(timeSpent);
 
-	if (isOn)
+	if (m_isOn)
 	{
-		if (timer.removeTime(timeSpent))
+		if (m_timer.removeTime(timeSpent))
 		{
 			if (increaseAnimationIndex())
 			{
-				if (continueSequence)
+				if (m_continueSequence)
 				{
 					if (goToTheNextLine())
 					{
 						restart();
-						if (!repeated)
+						if (!m_repeated)
 						{
-							isOn = false;
+							m_isOn = false;
 						}
 					}
 					else
@@ -81,18 +81,18 @@ bool fme::Animation::actualize(double timeSpent)
 						softRestart();
 					}
 				}
-				else if (repeated)
+				else if (m_repeated)
 				{
 					softRestart();
 				}
 				else
 				{
 					restart();
-					isOn = false;
+					m_isOn = false;
 				}
 				return true;
 			}
-			timer.softRestart();
+			m_timer.softRestart();
 		}
 	}
 	return false;
@@ -100,11 +100,11 @@ bool fme::Animation::actualize(double timeSpent)
 
 /*!
 * \brief change the current animation array
-* \param indexLine the index of the line target
+* \param m_indexLine the index of the line target
 */
 void fme::Animation::goToLine(unsigned int indexLine)
 {
-	this->indexLine = indexLine;
+	m_indexLine = indexLine;
 	restart();
 }
 
@@ -114,10 +114,10 @@ void fme::Animation::goToLine(unsigned int indexLine)
 */
 bool fme::Animation::goToTheNextLine()
 {
-	indexLine++;
-	if (indexLine >= textureCharacteristics->getCulumnSize())
+	m_indexLine++;
+	if (m_indexLine >= m_textureCharacteristics->getCulumnSize())
 	{
-		indexLine = 0;
+		m_indexLine = 0;
 		return true;
 	}
 	return false;
@@ -128,12 +128,12 @@ bool fme::Animation::goToTheNextLine()
 */
 void fme::Animation::addToTileSet()
 {
-	if (!isHide)
+	if (!m_isHide)
 	{
 		applyTextureOnVertices();
-		this->quadVertices.addVerticesToTheTileSet(
-				textureCharacteristics->getTileSet(),
-				layerLevelOfDisplay
+		m_quadVertices.addVerticesToTheTileSet(
+				m_textureCharacteristics->getTileSet(),
+				m_layerLevelOfDisplay
 			);
 	}
 }
@@ -144,8 +144,8 @@ void fme::Animation::addToTileSet()
 */
 bool fme::Animation::increaseAnimationIndex()
 {
-	indexCulumn++;
-	if (indexCulumn >= textureCharacteristics->getLineSizeOf(indexLine))
+	m_indexCulumn++;
+	if (m_indexCulumn >= m_textureCharacteristics->getLineSizeOf(m_indexLine))
 	{
 		return true;
 	}
@@ -157,18 +157,18 @@ bool fme::Animation::increaseAnimationIndex()
 */
 void fme::Animation::applyTextureOnVertices()
 {
-	this->quadVertices.setTexture(textureCharacteristics->getTexturePoints(indexCulumn, indexLine));
+	this->m_quadVertices.setTexture(m_textureCharacteristics->getTexturePoints(m_indexCulumn, m_indexLine));
 }
 
 // -------------- setters ------------------------------------
 
 /*!
-* \brief set the statement of repeated
-* \param the statement : if it's repeated
+* \brief set the statement of m_repeated
+* \param the statement : if it's m_repeated
 */
 void fme::Animation::setRepeated(bool state)
 {
-	repeated = state;
+	m_repeated = state;
 }
 
 /*!
@@ -177,7 +177,7 @@ void fme::Animation::setRepeated(bool state)
 */
 void fme::Animation::setContinueSequence(bool state)
 {
-	continueSequence = state;
+	m_continueSequence = state;
 }
 
 // -------------- state --------------------------------------
@@ -187,7 +187,7 @@ void fme::Animation::setContinueSequence(bool state)
 */
 void fme::Animation::start()
 {
-	isOn = true;
+	m_isOn = true;
 }
 
 /*!
@@ -195,27 +195,27 @@ void fme::Animation::start()
 */
 void fme::Animation::stop()
 {
-	isOn = false;
+	m_isOn = false;
 }
 
 /*!
 * \brief set the animation index to 0
-* \brief restart the timer of the animation
+* \brief restart the m_timer of the animation
 */
 void fme::Animation::restart()
 {
-	indexCulumn = 0;
-	timer.restart();
+	m_indexCulumn = 0;
+	m_timer.restart();
 }
 
 /*!
 * \brief set the animation index to 0
-* \brief don't restart the timer of the animation
+* \brief don't restart the m_timer of the animation
 */
 void fme::Animation::softRestart()
 {
-	indexCulumn = 0;
-	timer.softRestart();
+	m_indexCulumn = 0;
+	m_timer.softRestart();
 }
 
 // ------ methods to provide a powerfull polymorphism ------------

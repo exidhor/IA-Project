@@ -19,11 +19,12 @@ namespace fme
 	{
 	public:
 		TileSetsDisplayer();
-		void addTileSet(TileSet* tileSet);
 
-		virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
+		void			addTileSet(TileSet* tileSet);
+
+		virtual void	draw(sf::RenderTarget& target, sf::RenderStates states) const;
 
 	private:
-		std::vector <TileSet*> tileSetArray;
+		std::vector <TileSet*> m_tileSetArray;
 	};
 }

@@ -83,17 +83,17 @@ namespace fme
 
 
 	protected:
-		TextureCharacteristics* textureCharacteristics;
+		TextureCharacteristics*		m_textureCharacteristics;
 
-		QuadVertices quadVertices;
-		Vector2f originCenteredRelativedToTheWindow;
-		unsigned int layerLevelOfDisplay;
+		QuadVertices				m_quadVertices;
+		Vector2f					m_originCenteredRelative;
+		unsigned int				m_layerLevelOfDisplay;
 
 		//transformation
-		RotationTransformation rotationTransformation;
-		TranslationTransformation translationTransformation;
+		RotationTransformation		m_rotationManager;
+		TranslationTransformation	m_translationManager;
 
 		//state
-		bool isHide;
+		bool						m_isHide;
 	};
 }

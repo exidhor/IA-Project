@@ -25,17 +25,25 @@ namespace fme
 		~TextureCharacteristicsManager();
 
 		// Add Methods
-		bool addTextureCharacteristics(std::string key, Vector2f const& tileSize,
-			std::vector <Vector2f> texturePoints, double timePerFrame, TileSet* tileSetTarget);
-		bool addTextureCharacteristics(std::string key, Vector2f const& tileSize,
-			Vector2f oneTexturePoint, TileSet* tileSetTarget);
+		bool addTextureCharacteristics(
+				std::string key,
+				Vector2f const& tileSize,
+				std::vector <Vector2f> texturePoints,
+				double timePerFrame, 
+				TileSet* tileSetTarget);
+
+		bool addTextureCharacteristics(
+				std::string key, 
+				Vector2f const& tileSize,
+				Vector2f oneTexturePoint,
+				TileSet* tileSetTarget);
 
 		// Getter
-		TextureCharacteristics* getTextureCharacteristics(std::string key);
+		TextureCharacteristics*	getTextureCharacteristics(std::string key);
 
 
 	private:
-		std::map < std::string, TextureCharacteristics*>::iterator textureCharacteristicsIndex;
-		std::map <std::string, TextureCharacteristics*> textureCharacteristics;
+		std::map < std::string, TextureCharacteristics*>::iterator	m_textureCharacteristicsIndex;
+		std::map <std::string, TextureCharacteristics*>				m_textureCharacteristics;
 	};
 }

@@ -1,18 +1,15 @@
-/*#include "Vues/FreakyMonstersEngine.hpp"
-
+#include "Engines/GraphicEngine.hpp"
+/*
 int main()
 {
 	fme::GraphicEngine moteurGraphique;
-	
+
 	// allocation dynamique de la memoire
 	moteurGraphique.init();
 
-	// creation du TileSet
-	moteurGraphique.addTileSet("test", "res/img/tileTest.png");
-	//moteurGraphique.addTileSet("test2", "res/img/tileTest.png");
-	moteurGraphique.initTileSetLayers("test", 1000, 1);
-	//moteurGraphique.initTileSetLayers("test2", 1000, 1);
-	
+	// creation du TileSet et initialisation
+	moteurGraphique.addTileSet("test", "Res/tileTest.png", 1000, 1);
+
 	std::string nomCleAnimation("vieuxJaune");
 	fme::Vector2f tailleTuile(32, 48);
 
@@ -41,12 +38,11 @@ int main()
 	moteurGraphique.addAnimation(nomCleAnimation, 0, 1);
 
 	// creation de la fenetre
-	std::string titleWindow("The Next Gen of the Animation (hope)");
-	sf::RenderWindow window(sf::VideoMode(1000, 600), titleWindow);
+	moteurGraphique.openWindow("test du Graphic Engine !!!");
 
 	// pour les animations dans le temps
-	sf::Clock clock;
-	double timePasse = 0;
+	//sf::Clock clock;
+	//double timePasse = 0;
 
 	// lancement de l'animation en mode infini
 	std::vector <fme::Sprite*> animations;
@@ -54,10 +50,15 @@ int main()
 	{
 		animations.push_back(moteurGraphique.getFreeSprite(nomCleAnimation));
 		animations[i]->setRepeated(true);
-		animations[i]->setPosition((i % 10)*32, (i / 10)*48);
+		animations[i]->setPosition((i % 10) * 32, (i / 10) * 48);
 		animations[i]->start();
 	}
 
+	while (true)
+	{
+
+	}
+	
 	sf::Event event;
 
 	while (window.isOpen())
@@ -169,6 +170,7 @@ int main()
 		window.draw(moteurGraphique);
 		window.display();
 	}
-
+	
 	return 0;
-}*/
+}
+*/

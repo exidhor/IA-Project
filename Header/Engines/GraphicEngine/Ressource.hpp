@@ -8,8 +8,8 @@ namespace fme
 	public:
 		Ressource(Sprite* sprite)
 		{
-			this->sprite = sprite;
-			isUsed = false;
+			this->sprite	= sprite;
+			isUsed			= false;
 		}
 
 		~Ressource()
@@ -18,6 +18,6 @@ namespace fme
 		}
 
 		Sprite* sprite;
-		bool isUsed;
+		bool	isUsed;
 	};
 }
