@@ -6,6 +6,7 @@
 * \param a texture bounds
 */
 fme::QuadVertices::QuadVertices(sf::FloatRect const& textureBounds)
+	: TextureVertices(4)
 {
 	// left top
 	m_vertices[0] = sf::Vertex(
@@ -31,7 +32,7 @@ fme::QuadVertices::QuadVertices(sf::FloatRect const& textureBounds)
 		sf::Vector2f(textureBounds.left, textureBounds.top + textureBounds.height)
 		);
 
-	recalculateGlobalBounds();
+	computeGlobalBounds();
 }
 
 /*!
@@ -41,6 +42,8 @@ fme::QuadVertices::QuadVertices(sf::FloatRect const& textureBounds)
 */
 fme::QuadVertices::QuadVertices(fme::QuadVertices const& quadVertices)
 {
+	setSizeArray(4);
+
 	m_vertices[0].position.x = quadVertices.m_vertices[0].position.x;
 	m_vertices[0].position.y = quadVertices.m_vertices[0].position.y;
 	m_vertices[0].texCoords.x = quadVertices.m_vertices[0].texCoords.x;
@@ -61,7 +64,7 @@ fme::QuadVertices::QuadVertices(fme::QuadVertices const& quadVertices)
 	m_vertices[3].texCoords.x = quadVertices.m_vertices[3].texCoords.x;
 	m_vertices[3].texCoords.y = quadVertices.m_vertices[3].texCoords.y;
 
-	recalculateGlobalBounds();
+	computeGlobalBounds();
 }
 
 
@@ -70,79 +73,9 @@ fme::QuadVertices::QuadVertices(fme::QuadVertices const& quadVertices)
 */
 fme::QuadVertices::~QuadVertices()
 {
-	// void
+	delete[] m_vertices;
 }
 
-/*!
-* \return the position of the left-top vertex of the global bounds
-*/
-fme::Vector2f fme::QuadVertices::getPosition()
-{
-	return fme::Vector2f(m_globalBounds.left, m_globalBounds.top);
-}
-
-/*!
-* \return the global bounds
-*/
-sf::FloatRect const& fme::QuadVertices::getGlobalBounds()
-{
-	return m_globalBounds;
-}
-
-/*!
-* \brief set the position of the left-top vertex of the global bounds
-* \param the new position
-*/
-void fme::QuadVertices::setPosition(fme::Vector2f const& newPosition)
-{
-	sf::Vector2f offset(
-		newPosition.x - m_globalBounds.left,
-		newPosition.y - m_globalBounds.top
-		);
-
-	sf::Transform transformation;
-	transformation.translate(offset);
-	applyTranformation(transformation);
-}
-
-/*!
-* \brief add m_vertices to the tileSet on the layel level target
-* \param newTargetTileSet the tileSet which will display the m_vertices
-* \param layerLevel the layer of display 
-*/
-void fme::QuadVertices::addVerticesToTheTileSet(fme::TileSet* newTargetTileSet,
-	unsigned int layerLevel)
-{
-	newTargetTileSet->addVertices(m_vertices, 4, layerLevel);
-}
-
-/*!
-* \brief calculate a rotation on the sf::Tranform transformation
-* \param angleOfRotation in degree
-* \param origin the origin of the rotation
-* \param transformation the actual parameters of the final transformation
-*			where the rotation will be apply
-*/
-void fme::QuadVertices::rotate(float angleOfRotation, fme::Vector2f const& origin,
-	sf::Transform & transformation)
-{
-	transformation.rotate(
-		angleOfRotation,
-		origin.x,
-		origin.y
-		);
-}
-
-/*!
-* \brief calculate a translation on the sf::Tranform transformation
-* \param offset the offset of the translation
-* \param transformation the actual parameters of the final transformation
-*			where the translation will be apply
-*/
-void fme::QuadVertices::translate(fme::Vector2f const& offset, sf::Transform & transformation)
-{
-	transformation.translate(offset.x, offset.y);
-}
 
 /*!
 * \brief set a new texture from coordinates to the m_vertices
@@ -172,27 +105,12 @@ void fme::QuadVertices::setTexture(fme::Vector2f const& newCoordTexture)
 		newCoordTexture.y + height);
 }
 
-/*!
-* \brief apply the transformation on the m_vertices by calculating their
-* \brief new position.
-* \param transformation all parameters for the transformation calculated
-*			before
-*/
-void fme::QuadVertices::applyTranformation(sf::Transform const& transformation)
-{
-	for (unsigned int i = 0; i < 4; i++)
-	{
-		m_vertices[i].position = transformation.transformPoint(m_vertices[i].position);
-	}
-
-	recalculateGlobalBounds();
-}
 
 /*!
 * \brief calculate the global bounds (i.e. the rectangle circumscribes the  
 * \brief m_vertices transformed, parallel to the abscissa and ordinate)
 */
-void fme::QuadVertices::recalculateGlobalBounds()
+void fme::QuadVertices::computeGlobalBounds()
 {
 	float left = m_vertices[0].position.x;
 	float right = m_vertices[0].position.x;
@@ -221,8 +139,13 @@ void fme::QuadVertices::recalculateGlobalBounds()
 		}
 	}
 
-	m_globalBounds.left = left;
-	m_globalBounds.top = top;
-	m_globalBounds.width = right - left;
-	m_globalBounds.height = bot - top;
+	setPosition(Vector2f(left, top));
+	setSizeGlobalBounds(right - left, bot - top);
+
+	globalBoundsIsComputed();
+}
+
+sf::Vertex* fme::QuadVertices::getVerticesArray()
+{
+	return m_vertices;
 }

@@ -12,7 +12,28 @@
 #include <iostream>
 #include "Engines/GraphicEngine/TileSet.hpp"
 #include "Engines/GraphicEngine/Vector2f.hpp"
+#include "Engines/GraphicEngine/TextureVertices.hpp"
 
+namespace fme
+{
+	class QuadVertices : public TextureVertices
+	{
+	public:
+		QuadVertices(sf::FloatRect const& textureBounds);
+		QuadVertices(QuadVertices const& quadVertices);
+		~QuadVertices();
+
+		virtual void setTexture(Vector2f const& newCoordTexture);
+
+	private:
+		virtual sf::Vertex* getVerticesArray();
+		virtual void computeGlobalBounds();
+
+		sf::Vertex		m_vertices[4];
+	};
+}
+
+/*
 namespace fme
 {
 	class QuadVertices
@@ -42,9 +63,10 @@ namespace fme
 		void applyTranformation(sf::Transform const& transformation);
 
 	private:
-		void recalculateGlobalBounds();
+		void computeGlobalBounds();
 
 		sf::Vertex		m_vertices[4];
 		sf::FloatRect	m_globalBounds;
 	};
 }
+*/
