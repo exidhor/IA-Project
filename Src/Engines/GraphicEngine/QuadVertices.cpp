@@ -40,10 +40,9 @@ fme::QuadVertices::QuadVertices(sf::FloatRect const& textureBounds)
 * \brief copy each sf::Vertex
 * \param quadVertices model for the copy
 */
-fme::QuadVertices::QuadVertices(fme::QuadVertices const& quadVertices)
+fme::QuadVertices::QuadVertices(fme::QuadVertices const& quadVertices)	
+	: TextureVertices(quadVertices)
 {
-	setSizeArray(4);
-
 	m_vertices[0].position.x = quadVertices.m_vertices[0].position.x;
 	m_vertices[0].position.y = quadVertices.m_vertices[0].position.y;
 	m_vertices[0].texCoords.x = quadVertices.m_vertices[0].texCoords.x;
@@ -63,8 +62,6 @@ fme::QuadVertices::QuadVertices(fme::QuadVertices const& quadVertices)
 	m_vertices[3].position.y = quadVertices.m_vertices[3].position.y;
 	m_vertices[3].texCoords.x = quadVertices.m_vertices[3].texCoords.x;
 	m_vertices[3].texCoords.y = quadVertices.m_vertices[3].texCoords.y;
-
-	computeGlobalBounds();
 }
 
 

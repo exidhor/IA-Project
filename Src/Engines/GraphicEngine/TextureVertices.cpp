@@ -6,6 +6,25 @@ fme::TextureVertices::TextureVertices(int numberOfVertex)
 	m_globalBoundsUpToDate = false;
 }
 
+fme::TextureVertices::TextureVertices(TextureVertices const& textureVertices)
+{
+	m_size = textureVertices.m_size;
+	if (textureVertices.m_globalBoundsUpToDate)
+	{
+		m_globalBounds = textureVertices.m_globalBounds;
+		m_globalBoundsUpToDate = true;
+	}
+	else
+	{
+		m_globalBoundsUpToDate = false;
+	}
+}
+
+fme::TextureVertices::~TextureVertices()
+{
+	// void
+}
+
 /*!
 * \brief add m_vertices to the tileSet on the layel level target
 * \param newTargetTileSet the tileSet which will display the m_vertices
@@ -57,6 +76,16 @@ void fme::TextureVertices::setSizeGlobalBounds(float width, float height)
 {
 	m_globalBounds.width = width;
 	m_globalBounds.height = height;
+}
+
+void fme::TextureVertices::setColor(sf::Color const& color)
+{
+	sf::Vertex* vertices = getVerticesArray();
+
+	for (unsigned int i = 0; i < m_size; i++)
+	{
+		vertices[i].color = color;
+	}
 }
 
 /*!

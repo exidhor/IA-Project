@@ -9,7 +9,9 @@ namespace fme
 	class TextureVertices
 	{
 	public :
-		TextureVertices(int numberOfVertex = 0); 
+		TextureVertices(int numberOfVertex = 0);
+		TextureVertices(TextureVertices const& textureVertices);
+		virtual ~TextureVertices();
 
 		void addVerticesToTheTileSet(TileSet* targetTileSet, unsigned int layerLevel);
 
@@ -18,7 +20,7 @@ namespace fme
 
 		void setPosition(Vector2f const& newPosition);
 		virtual void setTexture(Vector2f const& newCoordTexture) = 0;
-
+		void setColor(sf::Color const& color);
 
 		void translate(Vector2f const& offset, sf::Transform & transformation);
 		void rotate(float angleOfRotation, Vector2f const& originOfTheRotation,
