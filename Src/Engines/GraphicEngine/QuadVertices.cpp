@@ -113,7 +113,7 @@ void fme::QuadVertices::setPosition(fme::Vector2f const& newPosition)
 void fme::QuadVertices::addVerticesToTheTileSet(fme::TileSet* newTargetTileSet,
 	unsigned int layerLevel)
 {
-	newTargetTileSet->addVertices(m_vertices, layerLevel);
+	newTargetTileSet->addVertices(m_vertices, 4, layerLevel);
 }
 
 /*!

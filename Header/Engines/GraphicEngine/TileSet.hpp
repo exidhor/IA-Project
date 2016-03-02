@@ -26,19 +26,22 @@ namespace fme
 	class TileSet : public sf::Drawable
 	{
 	public:
+		TileSet();
 		TileSet(sf::Texture* textureTile);
 
 		~TileSet();
 
 		void			loading(
 							unsigned int maxSizeVerticesArray,
-							unsigned int numberOfLayerLevel);
+							unsigned int numberOfLayerLevel,
+							sf::PrimitiveType primitiveType = sf::Quads);
 
 		void			clearAllLayers();
 		void			clearLayer(unsigned int layerLevel);
 
 		void			addVertices(
-							sf::Vertex vertices[4],
+							sf::Vertex* vertices, 
+							unsigned int sizeArray,
 							unsigned int layerLevel);
 
 		void			assembleContinousArray();
@@ -55,6 +58,7 @@ namespace fme
 
 		sf::Texture*			m_textureTile;
 		std::vector<sf::Vertex>	m_verticesArrayToDraw;
+		sf::PrimitiveType		m_primitiveType;
 		unsigned int			m_maxSizeVerticesArray;
 		unsigned int			m_numberOfLayerLevel;
 		// array of the positions of the last element for the different vertex arrays

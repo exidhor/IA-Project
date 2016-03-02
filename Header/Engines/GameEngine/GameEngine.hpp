@@ -18,5 +18,5 @@ private :
 	fme::GraphicEngine	m_graphicEngine;
 	PhysicEngine		m_physicEngine;
 
-	std::thread *m_threadGraphic;
+	std::thread*		m_threadGraphic;
 };

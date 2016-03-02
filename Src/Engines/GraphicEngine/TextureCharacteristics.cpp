@@ -2,21 +2,32 @@
 
 //Constructor
 fme::TextureCharacteristics::TextureCharacteristics(
-	std::vector <fme::TilesCharacteristics*> targetTilesCharacteristics,
-	fme::TileSet* targetTileSet)
+		std::vector <fme::TilesCharacteristics*> targetTilesCharacteristics,
+		fme::TileSet* targetTileSet)
 {
 	m_arrayOfTileCharacteristic = targetTilesCharacteristics;
 	m_tileSet = targetTileSet;
 }
 
 fme::TextureCharacteristics::TextureCharacteristics(
-	TilesCharacteristics* tileCharacteristics,
-	TileSet* tileSet)
+		TilesCharacteristics* tileCharacteristics,
+		TileSet* tileSet)
+
 	:TextureCharacteristics(
 		std::vector <fme::TilesCharacteristics*> (1, tileCharacteristics),
 													tileSet)
 {
 	// void
+}
+
+fme::TextureCharacteristics::TextureCharacteristics(
+		TileSet* tileSet,
+		float width,
+		float height)
+{
+	m_tileSet = tileSet;
+	m_arrayOfTileCharacteristic.push_back(new TilesCharacteristics(Vector2f(width, height),
+																	std::vector <Vector2f> (), 0));
 }
 
 //Desctructor

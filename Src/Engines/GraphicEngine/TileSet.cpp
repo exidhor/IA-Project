@@ -12,6 +12,12 @@ fme::TileSet::TileSet(sf::Texture* newTextureTile)
 	m_isContinous = false;
 }
 
+fme::TileSet::TileSet()
+	: TileSet(NULL)
+{
+	// void
+}
+
 fme::TileSet::~TileSet()
 {
 	if (m_arrayOfCurrentIndices != NULL)
@@ -22,7 +28,9 @@ fme::TileSet::~TileSet()
 	m_verticesArrayToDraw.clear();
 }
 
-void fme::TileSet::loading(unsigned int newMaxSizeVerticesArray, unsigned int newNumberOfLayerLevel)
+void fme::TileSet::loading(unsigned int newMaxSizeVerticesArray,
+							unsigned int newNumberOfLayerLevel,
+							sf::PrimitiveType primitiveType)
 {
 	m_maxSizeVerticesArray = newMaxSizeVerticesArray * 4;
 	m_numberOfLayerLevel = newNumberOfLayerLevel;
@@ -30,10 +38,13 @@ void fme::TileSet::loading(unsigned int newMaxSizeVerticesArray, unsigned int ne
 	m_verticesArrayToDraw.resize(m_numberOfLayerLevel * m_maxSizeVerticesArray, sf::Vertex());
 
 	m_arrayOfCurrentIndices = new int[m_numberOfLayerLevel];
-		for (unsigned int i = 0; i < m_numberOfLayerLevel; ++i)
+		
+	for (unsigned int i = 0; i < m_numberOfLayerLevel; ++i)
 	{	
 		m_arrayOfCurrentIndices[i] = -1;
 	}
+
+	m_primitiveType = primitiveType;
 }
 
 void fme::TileSet::assembleContinousArray()
@@ -67,14 +78,14 @@ void fme::TileSet::assembleContinousArray()
 	}
 }
 
-void fme::TileSet::addVertices(sf::Vertex vertices[4], unsigned int level)
+void fme::TileSet::addVertices(sf::Vertex* vertices, unsigned int sizeArray, unsigned int level)
 {
 	if (verifyLevel(level))
 	{
 		if (verifyIndice(m_arrayOfCurrentIndices[level] - m_maxSizeVerticesArray*level))
 		{
 			m_isContinous = false;
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < sizeArray; i++)
 			{
 				m_arrayOfCurrentIndices[level]++;
 
@@ -119,7 +130,7 @@ void fme::TileSet::draw(sf::RenderTarget& target, sf::RenderStates states) const
 	{
 		states.texture = m_textureTile;
 
-		target.draw(&m_verticesArrayToDraw[0], m_continousIndexArray + 1, sf::Quads, states);
+		target.draw(&m_verticesArrayToDraw[0], m_continousIndexArray + 1, m_primitiveType, states);
 	}
 }
 

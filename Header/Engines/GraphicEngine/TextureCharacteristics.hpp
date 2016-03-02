@@ -21,12 +21,12 @@ namespace fme
 	class TextureCharacteristics
 	{
 	public:
-		TextureCharacteristics(
-						std::vector <TilesCharacteristics*> tilesCharacteristics,
-						TileSet* tileSet);
-		TextureCharacteristics(
-						TilesCharacteristics* tileCharacteristics,
-						TileSet* tileSet);
+		TextureCharacteristics(TileSet* tileSet, float width, float height);
+		TextureCharacteristics(std::vector <TilesCharacteristics*> tilesCharacteristics,
+								TileSet* tileSet);
+		TextureCharacteristics(TilesCharacteristics* tileCharacteristics,
+								TileSet* tileSet);
+
 
 		~TextureCharacteristics();
 

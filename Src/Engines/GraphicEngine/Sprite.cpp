@@ -2,17 +2,13 @@
 
 fme::Sprite::Sprite(TextureCharacteristics* textureCharacteristics,
 	unsigned int layerLevel)
-	: m_quadVertices(
-					sf::FloatRect(textureCharacteristics->getTexturePoints(0, 0).x,
+	: m_quadVertices(sf::FloatRect(textureCharacteristics->getTexturePoints(0, 0).x,
 									textureCharacteristics->getTexturePoints(0, 0).y,
 									textureCharacteristics->getTileSize(0).x,
-									textureCharacteristics->getTileSize(0).y
-									)
-					),
-	m_originCenteredRelative(
-					textureCharacteristics->getTileSize(0).x / 2,
-					textureCharacteristics->getTileSize(0).y / 2
-	)
+									textureCharacteristics->getTileSize(0).y)),
+
+	m_originCenteredRelative(textureCharacteristics->getTileSize(0).x / 2,
+							textureCharacteristics->getTileSize(0).y / 2)
 {
 	m_translationManager.initAttribute(&m_quadVertices);
 	m_rotationManager.initAttribute(&m_quadVertices);
@@ -239,6 +235,15 @@ bool fme::Sprite::isAnimation()
 bool fme::Sprite::isSprite()
 {
 	return true;
+}
+
+/*!
+* \brief give the type of the current object
+* \return false because it's not a Shape
+*/
+bool fme::Sprite::isShape()
+{
+	return false;
 }
 
 // void method to use animation with polymorphism

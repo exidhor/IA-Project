@@ -21,6 +21,7 @@ namespace fme
 	class Sprite
 	{
 	public:
+		Sprite();
 		Sprite(TextureCharacteristics* textureCharacteristics,
 			unsigned int layerLevel = 0);
 		Sprite(Sprite const& sprite);
@@ -33,14 +34,14 @@ namespace fme
 		virtual bool actualize(double timeSpent);
 
 		// getters
-		Vector2f getPosition();
-		Vector2f getGlobalPosition();
-		Vector2f getGlobalSize();
+		virtual Vector2f getPosition();
+		virtual Vector2f getGlobalPosition();
+		virtual Vector2f getGlobalSize();
 
 		//setters
-		void setPosition(float abscissa, float ordinate);
-		void move(float offsetX, float offsetY);
-		void setGlobalPosition(float abscissa, float ordinate);
+		virtual void setPosition(float abscissa, float ordinate);
+		virtual void move(float offsetX, float offsetY);
+		virtual void setGlobalPosition(float abscissa, float ordinate);
 		void setLayerLevel(unsigned int Layerlevel);
 
 		// transformation
@@ -70,6 +71,7 @@ namespace fme
 		// methods to provide a powerfull polymorphism
 		virtual bool isAnimation();
 		virtual bool isSprite();
+		virtual bool isShape();
 
 		// void method to use animation with polymorphism
 		virtual void goToLine(unsigned int indexLine);
