@@ -35,6 +35,15 @@ fme::QuadVertices::QuadVertices(sf::FloatRect const& textureBounds)
 	computeGlobalBounds();
 }
 
+fme::QuadVertices::QuadVertices(TextureVertices const& textureVertices)
+	: TextureVertices(textureVertices)
+{
+	for (unsigned int i = 0; i < 4; i++)
+	{
+		m_vertices[i] = textureVertices.getConstVerticesArray()[i];
+	}
+}
+
 /*!
 * \brief Construct 4 m_vertices from a fme::quadVertices
 * \brief copy each sf::Vertex
@@ -143,6 +152,16 @@ void fme::QuadVertices::computeGlobalBounds()
 }
 
 sf::Vertex* fme::QuadVertices::getVerticesArray()
+{
+	return m_vertices;
+}
+
+bool fme::QuadVertices::isQuadVertices()
+{
+	return true;
+}
+
+const sf::Vertex* fme::QuadVertices::getConstVerticesArray() const
 {
 	return m_vertices;
 }

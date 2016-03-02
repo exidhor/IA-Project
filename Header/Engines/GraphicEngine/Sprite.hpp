@@ -15,10 +15,11 @@
 #include "Engines/GraphicEngine/QuadVertices.hpp"
 #include "Engines/GraphicEngine/RotationTransformation.hpp"
 #include "Engines/GraphicEngine/TranslationTransformation.hpp"
+#include "Engines/GraphicEngine/Drawable.hpp"
 
 namespace fme
 {
-	class Sprite
+	class Sprite : public Drawable
 	{
 	public:
 		Sprite();
@@ -28,21 +29,8 @@ namespace fme
 
 		virtual ~Sprite();
 
-		virtual void addToTileSet();
-
 		// method to provid a efficient polymorphism 
 		virtual bool actualize(double timeSpent);
-
-		// getters
-		virtual Vector2f getPosition();
-		virtual Vector2f getGlobalPosition();
-		virtual Vector2f getGlobalSize();
-
-		//setters
-		virtual void setPosition(float abscissa, float ordinate);
-		virtual void move(float offsetX, float offsetY);
-		virtual void setGlobalPosition(float abscissa, float ordinate);
-		void setLayerLevel(unsigned int Layerlevel);
 
 		// transformation
 		void setRotationByTime(float speedPerSecond, double timeUntilTheEnd);
@@ -64,10 +52,6 @@ namespace fme
 		void startTranslation();
 		void stopTranslation();
 
-		// state
-		void hide();
-		void show();
-
 		// methods to provide a powerfull polymorphism
 		virtual bool isAnimation();
 		virtual bool isSprite();
@@ -87,15 +71,8 @@ namespace fme
 	protected:
 		TextureCharacteristics*		m_textureCharacteristics;
 
-		QuadVertices				m_quadVertices;
-		Vector2f					m_originCenteredRelative;
-		unsigned int				m_layerLevelOfDisplay;
-
 		//transformation
 		RotationTransformation		m_rotationManager;
 		TranslationTransformation	m_translationManager;
-
-		//state
-		bool						m_isHide;
 	};
 }

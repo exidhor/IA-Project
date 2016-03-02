@@ -20,10 +20,15 @@ namespace fme
 	{
 	public:
 		QuadVertices(sf::FloatRect const& textureBounds);
+		QuadVertices(TextureVertices const& textureVertices);
 		QuadVertices(QuadVertices const& quadVertices);
 		~QuadVertices();
 
 		virtual void setTexture(Vector2f const& newCoordTexture);
+
+		virtual bool isQuadVertices();
+
+		virtual const sf::Vertex* getConstVerticesArray() const;
 
 	private:
 		virtual sf::Vertex* getVerticesArray();

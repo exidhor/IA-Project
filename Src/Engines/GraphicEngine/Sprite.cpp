@@ -1,36 +1,28 @@
 #include "Engines/GraphicEngine/Sprite.hpp"
 
 fme::Sprite::Sprite(TextureCharacteristics* textureCharacteristics,
-	unsigned int layerLevel)
-	: m_quadVertices(sf::FloatRect(textureCharacteristics->getTexturePoints(0, 0).x,
-									textureCharacteristics->getTexturePoints(0, 0).y,
-									textureCharacteristics->getTileSize(0).x,
-									textureCharacteristics->getTileSize(0).y)),
-
-	m_originCenteredRelative(textureCharacteristics->getTileSize(0).x / 2,
-							textureCharacteristics->getTileSize(0).y / 2)
+					unsigned int layerLevel)
 {
-	m_translationManager.initAttribute(&m_quadVertices);
-	m_rotationManager.initAttribute(&m_quadVertices);
+	// initialization of the Drawable part
+	initTileSet(textureCharacteristics->getTileSet());
+	setLayerLevel(layerLevel);
+	QuadVertices* quadVertices = new QuadVertices(sf::FloatRect(textureCharacteristics->getTexturePoints(0, 0).x,
+																textureCharacteristics->getTexturePoints(0, 0).y,
+																textureCharacteristics->getTileSize(0).x,
+																textureCharacteristics->getTileSize(0).y));
+	initVertices(quadVertices);
+	initOriginCenteredRelative(textureCharacteristics->getTileSize(0).x / 2,
+								textureCharacteristics->getTileSize(0).y / 2);
 
+	// initialization of the Sprite part
 	m_textureCharacteristics = textureCharacteristics;
-	m_layerLevelOfDisplay = layerLevel;
-	m_isHide = false;
+
 }
 
 fme::Sprite::Sprite(fme::Sprite const& sprite)
-	:m_quadVertices(sprite.m_quadVertices),
-	m_originCenteredRelative(sprite.m_originCenteredRelative),
-	m_rotationManager(),
-	m_translationManager()
+	: Drawable(sprite)
 {
-
-	m_translationManager.initAttribute(&m_quadVertices);
-	m_rotationManager.initAttribute(&m_quadVertices);
-
-	m_layerLevelOfDisplay = sprite.m_layerLevelOfDisplay;
 	m_textureCharacteristics = sprite.m_textureCharacteristics;
-	m_isHide = false;
 }
 
 fme::Sprite::~Sprite()
@@ -65,81 +57,6 @@ bool fme::Sprite::actualize(double timeSpent)
 	return false;
 }
 
-void fme::Sprite::addToTileSet()
-{
-	if (!m_isHide)
-	{
-		this->m_quadVertices.addVerticesToTheTileSet(
-			m_textureCharacteristics->getTileSet(),
-			m_layerLevelOfDisplay
-			);
-	}
-}
-
-// -------------- getters ------------------------------------
-
-fme::Vector2f fme::Sprite::getPosition()
-{
-	return m_quadVertices.getPosition();
-}
-
-fme::Vector2f fme::Sprite::getGlobalPosition()
-{
-	return m_quadVertices.getPosition();
-}
-
-fme::Vector2f fme::Sprite::getGlobalSize()
-{
-	return fme::Vector2f(m_quadVertices.getGlobalBounds().width,
-		m_quadVertices.getGlobalBounds().height);
-}
-
-// -------------- setters ------------------------------------
-
-void fme::Sprite::setPosition(float abscissa, float ordinate)
-{
-	fme::Vector2f newOrigin(
-		abscissa + m_quadVertices.getGlobalBounds().width / 2,
-		ordinate + m_quadVertices.getGlobalBounds().height / 2
-	);
-
-	fme::Vector2f offset(
-		newOrigin.x - m_originCenteredRelative.x,
-		newOrigin.y - m_originCenteredRelative.y
-	);
-
-	sf::Transform transform;
-	this->m_quadVertices.translate(offset, transform);
-	m_quadVertices.applyTranformation(transform);
-
-	m_originCenteredRelative = newOrigin;
-}
-
-void fme::Sprite::move(float offsetX, float offsetY)
-{
-	fme::Vector2f offset(
-		offsetX,
-		offsetY
-		);
-
-	sf::Transform transform;
-	this->m_quadVertices.translate(offset, transform);
-	m_quadVertices.applyTranformation(transform);
-
-	m_originCenteredRelative.x += offsetX;
-	m_originCenteredRelative.y += offsetY;
-}
-
-void fme::Sprite::setGlobalPosition(float abscissa, float ordinate)
-{
-	m_quadVertices.setPosition(fme::Vector2f(abscissa, ordinate));
-}
-
-void fme::Sprite::setLayerLevel(unsigned int layerLevel)
-{
-	m_layerLevelOfDisplay = layerLevel;
-}
-
 // -------------- transformation  ----------------------------
 
 void fme::Sprite::setRotationByTime(float speedPerSecond, double timeUntilTheEnd)
@@ -172,16 +89,16 @@ void fme::Sprite::setTranslationByTargetPoint(
 	float abscissa, 
 	float ordinate)
 {
-	fme::Vector2f targetPointCentered(
-		abscissa + m_quadVertices.getGlobalBounds().width / 2,
-		ordinate + m_quadVertices.getGlobalBounds().height / 2
-		);
+	//fme::Vector2f targetPointCentered(
+	//	abscissa + m_quadVertices.getGlobalBounds().width / 2,
+	//	ordinate + m_quadVertices.getGlobalBounds().height / 2
+	//	);
 
-	m_translationManager.initByTargetPoint(
-		timeUntilTheEnd,
-		m_originCenteredRelative,
-		targetPointCentered
-		);
+	//m_translationManager.initByTargetPoint(
+	//	timeUntilTheEnd,
+	//	m_originCenteredRelative,
+	//	targetPointCentered
+	//	);
 }
 
 void fme::Sprite::setTranslationBySpeed(
@@ -205,17 +122,6 @@ void fme::Sprite::stopTranslation()
 	m_translationManager.stop();
 }
 
-// -------------- state --------------------------------------
-
-void fme::Sprite::hide()
-{
-	m_isHide = true;
-}
-
-void fme::Sprite::show()
-{
-	m_isHide = false;
-}
 
 // ------ methods to provide a powerfull polymorphism ------------
 

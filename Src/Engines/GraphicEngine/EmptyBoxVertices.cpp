@@ -34,6 +34,15 @@ fme::EmptyBoxVertices::EmptyBoxVertices(sf::FloatRect const& boxBounds)
 	computeGlobalBounds();
 }
 
+fme::EmptyBoxVertices::EmptyBoxVertices(TextureVertices const& textureVertices)
+	: TextureVertices(textureVertices)
+{
+	for (unsigned int i = 0; i < 8; i++)
+	{
+		m_vertices[i] = textureVertices.getConstVerticesArray()[i];
+	}
+}
+
 fme::EmptyBoxVertices::EmptyBoxVertices(EmptyBoxVertices const& emptyBoxVertices)
 	: TextureVertices(emptyBoxVertices)
 {
@@ -92,4 +101,14 @@ void fme::EmptyBoxVertices::computeGlobalBounds()
 	setSizeGlobalBounds(right - left, bot - top);
 
 	globalBoundsIsComputed();
+}
+
+bool fme::EmptyBoxVertices::isEmptyBoxVertices()
+{
+	return true;
+}
+
+const sf::Vertex* fme::EmptyBoxVertices::getConstVerticesArray() const
+{
+	return m_vertices;
 }

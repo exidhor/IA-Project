@@ -128,14 +128,8 @@ bool fme::Animation::goToTheNextLine()
 */
 void fme::Animation::addToTileSet()
 {
-	if (!m_isHide)
-	{
-		applyTextureOnVertices();
-		m_quadVertices.addVerticesToTheTileSet(
-				m_textureCharacteristics->getTileSet(),
-				m_layerLevelOfDisplay
-			);
-	}
+	applyTextureOnVertices();
+	Drawable::addToTileSet();
 }
 
 /*!
@@ -157,7 +151,7 @@ bool fme::Animation::increaseAnimationIndex()
 */
 void fme::Animation::applyTextureOnVertices()
 {
-	this->m_quadVertices.setTexture(m_textureCharacteristics->getTexturePoints(m_indexCulumn, m_indexLine));
+	setTexture(m_textureCharacteristics->getTexturePoints(m_indexCulumn, m_indexLine));
 }
 
 // -------------- setters ------------------------------------

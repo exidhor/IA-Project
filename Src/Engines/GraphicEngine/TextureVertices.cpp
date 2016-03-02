@@ -151,3 +151,13 @@ void fme::TextureVertices::globalBoundsIsComputed()
 {
 	m_globalBoundsUpToDate = true;
 }
+
+bool fme::TextureVertices::isQuadVertices()
+{
+	return false;
+}
+
+bool fme::TextureVertices::isEmptyBoxVertices()
+{
+	return false;
+}

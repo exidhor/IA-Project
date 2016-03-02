@@ -26,7 +26,12 @@ namespace fme
 		void rotate(float angleOfRotation, Vector2f const& originOfTheRotation,
 			sf::Transform & transformation);
 		void applyTranformation(sf::Transform const& transformation);
-		
+
+		// used to copy well vertices
+		virtual bool isQuadVertices();
+		virtual bool isEmptyBoxVertices();
+		virtual const sf::Vertex* getConstVerticesArray() const = 0;
+
 	protected :
 		virtual sf::Vertex* getVerticesArray() = 0;
 		virtual void computeGlobalBounds() = 0;

@@ -11,10 +11,15 @@ namespace fme
 	{
 	public:
 		EmptyBoxVertices(sf::FloatRect const& boxBounds);
+		EmptyBoxVertices(TextureVertices const& textureVertices);
 		EmptyBoxVertices(EmptyBoxVertices const& emptyBoxVertices);
 		~EmptyBoxVertices();
 
 		virtual void setTexture(Vector2f const& newCoordTexture);
+
+		virtual bool isEmptyBoxVertices();
+
+		virtual const sf::Vertex* getConstVerticesArray() const;
 
 	private:
 		virtual sf::Vertex* getVerticesArray();
