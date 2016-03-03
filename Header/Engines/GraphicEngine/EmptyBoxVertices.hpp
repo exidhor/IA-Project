@@ -1,3 +1,12 @@
+/*!
+* \file		EmptyBoxVertices.hpp
+* \brief	A rectangle represented only
+*			by lines for its edges
+* \author	Exhidor
+* \version	0.1
+* \date		2016-03-02
+*/
+
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
@@ -25,6 +34,7 @@ namespace fme
 		virtual sf::Vertex* getVerticesArray();
 		virtual void computeGlobalBounds();
 
+		// 8 because it's 2 for each edge
 		sf::Vertex		m_vertices[8];
 	};
 }

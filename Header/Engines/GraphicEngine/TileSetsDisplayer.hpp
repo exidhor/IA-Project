@@ -1,10 +1,10 @@
 /*!
-* \file TileSetsDisplayer.hpp
-* \brief It manage all TileSet to be drawn
-* \brief in the right order
-* \author Exhidor
-* \version 0.1
-* \date 2016-02-01
+* \file		TileSetsDisplayer.hpp
+* \brief	It manage all TileSet to be drawn
+*			in the right order.
+* \author	Exhidor
+* \version	0.1
+* \date		2016-02-01
 */
 
 #pragma once

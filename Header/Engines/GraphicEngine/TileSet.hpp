@@ -1,20 +1,21 @@
 /*!
-* \file TileSet.hpp
-* \brief An displayer which provide multiple
-* \brief layers of display.
-* \brief Store fme::QuadVertices in an array and display them
-* \brief by following this cycle :
-* \brief		
-* \brief	reset();			-- optionnal
-* \brief	addVertices(...);
-* \brief	...
-* \brief	addVertices(...);
-* \brief	buildArray();
-* \brief	draw();
-* \brief It needs to be load before being used
-* \author Exhidor
-* \version 2.1
-* \date 2016-02-01
+* \file		TileSet.hpp
+* \brief	A container which provide multiple
+*			layers of display.
+*			Store sf::Vertices in an array and display them
+*			by with this cycle :
+* 		
+*				clear();			-- optionnal
+*				addVertices(...);
+*				...
+*				addVertices(...);
+*				buildArray();
+*				draw();
+*			It needs to be load before being used.
+*			Do a TileSet per sf::PrimitiveType.
+* \author	Exhidor
+* \version	2.5
+* \date		2016-02-01
 */
 
 #pragma once

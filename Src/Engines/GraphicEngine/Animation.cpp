@@ -1,8 +1,13 @@
 #include "Engines/GraphicEngine/Animation.hpp"
 
 /*!
-* \brief Construct an Animation from an TextureCharacteristics
-* \param animationCharacteristic all characteristics necessary to build the animation
+* \brief	Construct an Animation from 
+*           an TextureCharacteristics.
+* \param	animationCharacteristics : all 
+*			characteristics necessary to
+*			build the animation.
+* \param	layerLevel : the place order during
+*			the draw.
 */
 fme::Animation::Animation(fme::TextureCharacteristics* newTextureCharacteristics,
 							unsigned int newLayerLevel)
@@ -22,8 +27,9 @@ fme::Animation::Animation(fme::TextureCharacteristics* newTextureCharacteristics
 }
 
 /*!
-* \brief Copy an fme::Animation from an another fme::Animation
-* \param animation the animation model
+* \brief	Copy an fme::Animation from an 
+*			another fme::Animation.
+* \param	animation the animation model.
 */
 fme::Animation::Animation(Animation const& animation)
 	: fme::Sprite(animation),
@@ -39,7 +45,7 @@ fme::Animation::Animation(Animation const& animation)
 }
 
 /*!
-* \brief Destructor 
+* \brief	Void destructor. 
 */
 fme::Animation::~Animation()
 {
@@ -49,12 +55,12 @@ fme::Animation::~Animation()
 // -------------- animations ---------------------------------
 
 /*!
-* \brief update the animation fron timeSpend
-* \brief change texture, if needed
-* \brief stop animation if it's finished
-* \brief update transformations if needed
-* \param timeSpend time of the current turn loop
-* \return true if the animation is finished
+* \brief	Update the animation fron timeSpend
+*			change texture, if needed.
+*			Stop animation if it's finished.
+*			Update transformations if needed.
+* \param	timeSpend time of the current turn loop.
+* \return	true if the animation is finished.
 */
 bool fme::Animation::actualize(double timeSpent)
 {
@@ -99,8 +105,8 @@ bool fme::Animation::actualize(double timeSpent)
 }
 
 /*!
-* \brief change the current animation array
-* \param m_indexLine the index of the line target
+* \brief	Change the current animation array,
+* \param	indexLine the index of the line target,
 */
 void fme::Animation::goToLine(unsigned int indexLine)
 {
@@ -109,8 +115,12 @@ void fme::Animation::goToLine(unsigned int indexLine)
 }
 
 /*!
-* \brief change the animation array, and take the next
-* \brief it doesn't reset the index of the animation
+* \brief	Change the animation array, 
+*			and take the next.
+*			It doesn't reset the index of 
+*			the animation.
+* \return	true if it returns to the first
+*			line.
 */
 bool fme::Animation::goToTheNextLine()
 {
@@ -124,7 +134,8 @@ bool fme::Animation::goToTheNextLine()
 }
 
 /*!
-* \brief add the 4 vertices to the TileSet
+* \brief	Update texture then add 
+*			the 4 vertices to the TileSet.
 */
 void fme::Animation::addToTileSet()
 {
@@ -133,8 +144,8 @@ void fme::Animation::addToTileSet()
 }
 
 /*!
-* \brief incremented the index of animations
-* \return true if the animation line is finished
+* \brief	Incremented the index of animations.
+* \return	true if the animation line is finished.
 */
 bool fme::Animation::increaseAnimationIndex()
 {
@@ -147,7 +158,7 @@ bool fme::Animation::increaseAnimationIndex()
 }
 
 /*!
-* \brief set texture on the vertices
+* \brief	Set texture on the vertices.
 */
 void fme::Animation::applyTextureOnVertices()
 {
@@ -157,8 +168,8 @@ void fme::Animation::applyTextureOnVertices()
 // -------------- setters ------------------------------------
 
 /*!
-* \brief set the statement of m_repeated
-* \param the statement : if it's m_repeated
+* \brief	Set the statement of m_repeated.
+* \param	state : if it's repeated.
 */
 void fme::Animation::setRepeated(bool state)
 {
@@ -166,8 +177,10 @@ void fme::Animation::setRepeated(bool state)
 }
 
 /*!
-* \brief allow the animation to enchain on the next animation line
-* \param the statement : if it's a sequence of animation lines
+* \brief	Allow the animation to enchain on
+*			the next animation line.
+* \param	state : if it's a sequence 
+*			of animation lines.
 */
 void fme::Animation::setContinueSequence(bool state)
 {
@@ -177,7 +190,7 @@ void fme::Animation::setContinueSequence(bool state)
 // -------------- state --------------------------------------
 
 /*!
-* \brief start the animation
+* \brief	Start the animation.
 */
 void fme::Animation::start()
 {
@@ -185,7 +198,7 @@ void fme::Animation::start()
 }
 
 /*!
-* \brief stop the animation
+* \brief	Stop the animation.
 */
 void fme::Animation::stop()
 {
@@ -193,8 +206,8 @@ void fme::Animation::stop()
 }
 
 /*!
-* \brief set the animation index to 0
-* \brief restart the m_timer of the animation
+* \brief	Set the animation index to 0.
+*			Restart the timer of the animation.
 */
 void fme::Animation::restart()
 {
@@ -203,8 +216,8 @@ void fme::Animation::restart()
 }
 
 /*!
-* \brief set the animation index to 0
-* \brief don't restart the m_timer of the animation
+* \brief	Set the animation index to 0.
+*			It doesn't restart the timer of the animation.
 */
 void fme::Animation::softRestart()
 {
@@ -215,8 +228,8 @@ void fme::Animation::softRestart()
 // ------ methods to provide a powerfull polymorphism ------------
 
 /*!
-* \brief give the type of the current object
-* \return true because it's an Animation
+* \brief	Give the type of the current object.
+* \return	true because it's an Animation.
 */
 bool fme::Animation::isAnimation()
 {
@@ -224,8 +237,8 @@ bool fme::Animation::isAnimation()
 }
 
 /*!
-* \brief give the type of the current object
-* \return false because it's not a Sprite
+* \brief	Give the type of the current object.
+* \return	false because it's not a Sprite.
 */
 bool fme::Animation::isSprite()
 {

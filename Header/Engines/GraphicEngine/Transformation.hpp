@@ -1,10 +1,10 @@
 /*!
-* \file Transformation.hpp
-* \brief Abstract class to an eventual future
-* \brief polymorphism
-* \author Exhidor
-* \version 0.1
-* \date 2016-02-01
+* \file		Transformation.hpp
+* \brief	[DEPRECATED] Abstract class to 
+*			an eventual future polymorphism
+* \author	Exhidor
+* \version	0.1
+* \date		2016-02-01
 */
 
 #pragma once

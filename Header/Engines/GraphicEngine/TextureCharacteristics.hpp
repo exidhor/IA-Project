@@ -1,12 +1,12 @@
 /*!
-* \file TextureCharacteristics.hpp
-* \brief All the characteristics necessary to build
-* \brief an Animation.
-* \brief store an array of TilesCharacteristics and the
-* \brief TileSet used
-* \author Alemior / Exhidor
-* \version 1.5
-* \date 2016-02-01
+* \file		TextureCharacteristics.hpp
+* \brief	All the characteristics necessary 
+*			to build an Animation.
+*			store an array of TilesCharacteristics 
+*			and the TileSet used
+* \author	Alemior / Exhidor
+* \version	1.5
+* \date		2016-02-01
 */
 
 #pragma once

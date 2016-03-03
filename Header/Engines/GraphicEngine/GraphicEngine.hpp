@@ -1,16 +1,18 @@
 /*!
-* \file GraphicEngine.hpp
-* \brief ...
-* \author Exhidor
-* \version 0.1
-* \date 2016-02-01
+* \file		GraphicEngine.hpp
+* \brief	The BIG controller of the
+*			graphic part of the programm
+*			it provides all methods to
+*			create, drop and update shapes,
+*			sprites and animations
+* \author	Exhidor
+* \version	0.3
+* \date		2016-02-01
 */
 
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
-#include <thread>
-#include <chrono>
 #include "Engines/GraphicEngine/TileSetsDisplayer.hpp"
 #include "Engines/GraphicEngine/TileSetManager.hpp"
 #include "Engines/GraphicEngine/TextureCharacteristicsManager.hpp"

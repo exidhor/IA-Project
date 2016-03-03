@@ -1,11 +1,11 @@
 /*!
-* \file Timer.hpp
-* \brief Used to time time spent
-* \brief It decrements and reset with the time passed
-* \brief during the construction
-* \author Exhidor
-* \version 0.1
-* \date 2016-02-01
+* \file		Timer.hpp
+* \brief	Used to time time spent.
+*			It decrements and reset with the time passed
+*			during the construction.
+* \author	Exhidor
+* \version	0.1
+* \date		2016-02-01
 */
 
 #pragma once

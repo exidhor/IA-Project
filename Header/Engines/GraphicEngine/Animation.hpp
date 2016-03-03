@@ -1,10 +1,10 @@
 /*!
-* \file Animation.hpp
-* \brief A succession of texturesPoints linked
-* \brief to a TileSet in a Sprite
-* \author Exhidor
-* \version 1.5
-* \date 2016-02-01
+* \file		Animation.hpp
+* \brief	A succession of texturesPoints linked
+*			to a TileSet in a Sprite
+* \author	Exhidor
+* \version	1.5
+* \date		2016-02-01
 */
 
 #pragma once
@@ -31,20 +31,16 @@ namespace fme
 		virtual void goToLine(unsigned int indexLine);
 		virtual bool goToTheNextLine();
 
-		//setters
-
 		virtual void setRepeated(bool state);
 		virtual void setContinueSequence(bool state);
 
-		// state
-
+		// state controls
 		virtual void start();
 		virtual void stop();
 		virtual void restart();
 		virtual void softRestart();
 
 		// methods to provide a powerfull polymorphism
-
 		virtual bool isAnimation();
 		virtual bool isSprite();
 
@@ -57,7 +53,6 @@ namespace fme
 		unsigned int	m_indexLine;
 
 		//state
-
 		bool			m_isOn;
 		bool			m_repeated;
 		bool			m_continueSequence;

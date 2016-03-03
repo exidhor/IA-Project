@@ -1,11 +1,11 @@
 /*!
-* \file TilesCharacteristics.hpp
-* \brief Configuration of an animation line or just a texture.
-* \brief It store texture points, tile size and
-* \brief time per frame.
-* \author Exhidor
-* \version 1.0
-* \date 2016-02-01
+* \file		TilesCharacteristics.hpp
+*			Configuration of an animation line or just a texture.
+*			It store texture points, tile size and
+*			time per frame.
+* \author	Exhidor
+* \version	1.0
+* \date		2016-02-01
 */
 
 #pragma once

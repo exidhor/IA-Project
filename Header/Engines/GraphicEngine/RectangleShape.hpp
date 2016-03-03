@@ -1,10 +1,10 @@
 /*!
-* \file RectangleShape.hpp
-* \brief A empty rectangle parallel to the axis
-* \brief It is used to test collisions for example
-* \author Exhidor
-* \version 0.1
-* \date 2016-03-01
+* \file		RectangleShape.hpp
+* \brief	A empty rectangle simbolize by
+*			stripped lines
+* \author	Exhidor
+* \version	0.1
+* \date		2016-03-01
 */
 
 #pragma once

@@ -1,3 +1,13 @@
+/*!
+* \file		Drawable.hpp
+* \brief	An object with a shape and 
+*			a texture/color which can
+*			be drawn
+* \author	Exhidor
+* \version	0.1
+* \date		2016-03-02
+*/
+
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Engines/GraphicEngine/Vector2f.hpp"
@@ -42,6 +52,6 @@ namespace fme
 		TileSet*			m_tileSet;
 		Vector2f			m_originCenteredRelative;
 		unsigned int		m_layerLevelOfDisplay;
-		bool				m_isHide;
+		bool				m_isHidden;
 	};
 }

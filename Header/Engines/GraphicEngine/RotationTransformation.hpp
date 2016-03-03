@@ -1,10 +1,10 @@
 /*!
-* \file RotationTransformation.hpp
-* \brief manage a rotation with a Timer
-* \brief or an angle
-* \author Exhidor
-* \version 2.0
-* \date 2016-02-01
+* \file		RotationTransformation.hpp
+* \brief	[DEPRECATED] manage a rotation 
+*			with a Timer or an angle
+* \author	Exhidor
+* \version	2.0
+* \date		2016-02-01
 */
 
 #pragma once

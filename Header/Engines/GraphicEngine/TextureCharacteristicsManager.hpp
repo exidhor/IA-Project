@@ -1,10 +1,10 @@
 /*!
-* \file TextureCharacteristicsManager.hpp
-* \brief Create and add a TextureCharacteritics in map of
-* \brief Get a TextureCharacteistics by its key
-* \author Alemior
-* \version 1.1
-* \date 05/02/2016
+* \file		TextureCharacteristicsManager.hpp
+* \brief	Create and add a TextureCharacteristics in a map.
+*			Allow to retreive them by its keys
+* \author	Alemior, Exhidor
+* \version	1.1
+* \date		05/02/2016
 */
 
 #pragma once
@@ -18,13 +18,10 @@ namespace fme
 	class TextureCharacteristicsManager
 	{
 	public:
-		// Constructor
 		TextureCharacteristicsManager();
 
-		// Destructor
 		~TextureCharacteristicsManager();
 
-		// Add Methods
 		bool addTextureCharacteristics(
 				std::string key,
 				Vector2f const& tileSize,
@@ -38,7 +35,6 @@ namespace fme
 				Vector2f oneTexturePoint,
 				TileSet* tileSetTarget);
 
-		// Getter
 		TextureCharacteristics*	getTextureCharacteristics(std::string key);
 
 

@@ -1,10 +1,11 @@
 /*!
-* \file TileSetManager.hpp
-* \brief ...
-* \brief ...
-* \author Alemior
-* \version ...
-* \date 2016-02-01
+* \file		TileSetManager.hpp
+* \brief	store fme::TileSet in a map.
+*			Allow to clear and assemble
+*			every TileSet in the map.
+* \author	Alemior, Exhidor
+* \version	0.1
+* \date		2016-02-01
 */
 
 #pragma once

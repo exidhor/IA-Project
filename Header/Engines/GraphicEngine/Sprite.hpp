@@ -1,11 +1,11 @@
 /*!
-* \file Sprite.hpp
-* \brief A unique texture symbolize by a QuadVertices
-* \brief It provides transformation like rotation
-* \brief or translation
-* \author Exhidor
-* \version 1.5
-* \date 2016-02-01
+* \file		Sprite.hpp
+* \brief	A unique texture symbolize by a QuadVertices
+*			It provides transformation like rotation
+*			or translation
+* \author	Exhidor
+* \version	1.6
+* \date		2016-02-01
 */
 
 #pragma once
