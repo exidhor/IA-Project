@@ -13,11 +13,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <thread>
+#include <chrono>
 #include "Engines/GraphicEngine/TileSetsDisplayer.hpp"
 #include "Engines/GraphicEngine/TileSetManager.hpp"
 #include "Engines/GraphicEngine/TextureCharacteristicsManager.hpp"
 #include "Engines/GraphicEngine/RessourceManager.hpp"
-#include "Engines/GraphicEngine/Vector2f.hpp"
+#include "Utilities/Vector2.hpp"
 
 namespace fme
 {

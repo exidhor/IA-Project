@@ -134,8 +134,8 @@ void fme::GraphicEngine::addTileSet(std::string const& key,
 void fme::GraphicEngine::addTextureCharacteristics(
 	std::string const& spriteKey,
 	std::string const& tileSetKey,
-	fme::Vector2f const& tileSize,
-	std::vector <fme::Vector2f> texturePoints,
+	Vector2f const& tileSize,
+	std::vector <Vector2f> texturePoints,
 	double timePerFrame)
 {
 	if (!m_textureCharactertisticsManager->addTextureCharacteristics(
@@ -157,8 +157,8 @@ void fme::GraphicEngine::addTextureCharacteristics(
 void fme::GraphicEngine::addTextureCharacteristics(
 	std::string const& spriteKey,
 	std::string const& tileSetKey,
-	fme::Vector2f const& tileSize,
-	fme::Vector2f const& oneTexturePoint)
+	Vector2f const& tileSize,
+	Vector2f const& oneTexturePoint)
 {
 	if (!m_textureCharactertisticsManager->addTextureCharacteristics(
 											spriteKey,

@@ -14,7 +14,7 @@
 #include <iostream>
 #include "Engines/GraphicEngine/TilesCharacteristics.hpp"
 #include "Engines/GraphicEngine/TileSet.hpp"
-#include "Engines/GraphicEngine/Vector2f.hpp"
+#include "Utilities/Vector2.hpp"
 
 namespace fme
 {

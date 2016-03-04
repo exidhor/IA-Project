@@ -89,7 +89,7 @@ fme::QuadVertices::~QuadVertices()
 *			calculate from the top-left vertex of texture rectangle.
 *			It needs to have the same size.
 */
-void fme::QuadVertices::setTexture(fme::Vector2f const& newCoordTexture)
+void fme::QuadVertices::setTexture(Vector2f const& newCoordTexture)
 {
 	float width = m_vertices[1].texCoords.x - m_vertices[0].texCoords.x;
 	float height = m_vertices[3].texCoords.y - m_vertices[0].texCoords.y;

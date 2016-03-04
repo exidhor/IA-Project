@@ -12,7 +12,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/System/Time.hpp>
 #include "Engines/GraphicEngine/Transformation.hpp"
-#include "Engines/GraphicEngine/Timer.hpp"
+#include "Utilities/Timer.hpp"
 
 namespace fme
 {

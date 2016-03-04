@@ -11,7 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include "Engines/GraphicEngine/TileSet.hpp"
-#include "Engines/GraphicEngine/Vector2f.hpp"
+#include "Utilities/Vector2.hpp"
 
 namespace fme
 {
@@ -36,7 +36,7 @@ namespace fme
 							sf::Transform & transformation);
 		void			applyTranformation(sf::Transform const& transformation);
 
-		// used to copy well vertices
+		// used to well copy vertices
 		virtual bool	isQuadVertices();
 		virtual bool	isEmptyBoxVertices();
 		virtual const	sf::Vertex* getConstVerticesArray() const = 0;

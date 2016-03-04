@@ -15,8 +15,8 @@ void fme::TranslationTransformation::initAttribute(fme::QuadVertices* newQuadVer
 
 void fme::TranslationTransformation::initByTargetPoint(
 	double timeUntilTheEnd, 
-	fme::Vector2f const& origin,
-	fme::Vector2f const& newTargetPoint)
+	Vector2f const& origin,
+	Vector2f const& newTargetPoint)
 {
 	m_isDeterminedByTime = false;
 	m_targetPoint = newTargetPoint;
@@ -26,7 +26,7 @@ void fme::TranslationTransformation::initByTargetPoint(
 
 void fme::TranslationTransformation::initBySpeed(
 	double timeSpent, 
-	fme::Vector2f const& speedPerSecond)
+	Vector2f const& speedPerSecond)
 {
 	m_isDeterminedByTime = true;
 	m_speedAbscissa = speedPerSecond.x;
@@ -36,13 +36,13 @@ void fme::TranslationTransformation::initBySpeed(
 
 bool fme::TranslationTransformation::actualize(
 	double timeSpent, 
-	fme::Vector2f & origin,
+	Vector2f & origin,
 	sf::Transform & transformation)
 {
 	if (m_isOn)
 	{
 		bool isFinish = false;
-		fme::Vector2f deplacement;
+		Vector2f deplacement;
 		if (m_isDeterminedByTime)
 		{
 			if (m_timer.removeTime(timeSpent))

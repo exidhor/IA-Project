@@ -10,7 +10,7 @@
 
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Engines/GraphicEngine/Vector2f.hpp"
+#include "Utilities/Vector2.hpp"
 #include "Engines/GraphicEngine/TileSet.hpp"
 #include "Engines/GraphicEngine/TextureVertices.hpp"
 #include "Engines/GraphicEngine/QuadVertices.hpp"
@@ -33,7 +33,7 @@ namespace fme
 		Vector2f getPosition();
 		Vector2f getGlobalSize();
 
-		void setPosition(fme::Vector2f const position);
+		void setPosition(Vector2f const position);
 		void setPosition(float abscissa, float ordinate);
 		void move(float offsetX, float offsetY);
 		void setLayerLevel(unsigned int layerLevel);

@@ -1,8 +1,8 @@
 #include "Engines/GraphicEngine/TilesCharacteristics.hpp"
 
 fme::TilesCharacteristics::TilesCharacteristics(
-	fme::Vector2f const& newtileSize,
-	std::vector <fme::Vector2f> newTexturePoints,
+	Vector2f const& newtileSize,
+	std::vector <Vector2f> newTexturePoints,
 	double newTimePerFrame)
 {
 	m_tileSize = newtileSize;
@@ -11,9 +11,9 @@ fme::TilesCharacteristics::TilesCharacteristics(
 }
 
 fme::TilesCharacteristics::TilesCharacteristics(
-	fme::Vector2f const& tileSize,
-	fme::Vector2f const& oneTexturePoint)
-	:TilesCharacteristics(tileSize, std::vector <fme::Vector2f> (1, oneTexturePoint), 0)
+	Vector2f const& tileSize,
+	Vector2f const& oneTexturePoint)
+	:TilesCharacteristics(tileSize, std::vector <Vector2f> (1, oneTexturePoint), 0)
 {
 	// void
 }
@@ -23,12 +23,12 @@ fme::TilesCharacteristics::~TilesCharacteristics()
 	m_texturePoints.clear();
 }
 
-fme::Vector2f const& fme::TilesCharacteristics::getTileSize()
+Vector2f const& fme::TilesCharacteristics::getTileSize()
 {
 	return m_tileSize;
 }
 
-fme::Vector2f const& fme::TilesCharacteristics::getTexturePoints(unsigned int index)
+Vector2f const& fme::TilesCharacteristics::getTexturePoints(unsigned int index)
 {
 	return m_texturePoints[index];
 }

@@ -49,13 +49,13 @@ fme::TileSet* fme::TextureCharacteristics::getTileSet()  const
 }
 
 //Return the TileSize of an ArrayOFTileCharacteristic
-fme::Vector2f const& fme::TextureCharacteristics::getTileSize(
+Vector2f const& fme::TextureCharacteristics::getTileSize(
 	unsigned int indexTileCharac)  const
 {
 	return m_arrayOfTileCharacteristic[indexTileCharac]->getTileSize();
 }
 
-fme::Vector2f const& fme::TextureCharacteristics::getTexturePoints(
+Vector2f const& fme::TextureCharacteristics::getTexturePoints(
 	unsigned int indexCulumn,
 	unsigned int indexLine)  const
 {

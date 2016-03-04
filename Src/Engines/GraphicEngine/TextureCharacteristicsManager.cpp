@@ -30,8 +30,8 @@ fme::TextureCharacteristicsManager::~TextureCharacteristicsManager()
 */
 bool fme::TextureCharacteristicsManager::addTextureCharacteristics(
 	std::string key, 
-	fme::Vector2f const& tileSize,
-	std::vector <fme::Vector2f> texturePoints,
+	Vector2f const& tileSize,
+	std::vector <Vector2f> texturePoints,
 	double timePerFrame,
 	fme::TileSet* tileSetTarget)
 {
@@ -60,11 +60,11 @@ bool fme::TextureCharacteristicsManager::addTextureCharacteristics(
 
 bool fme::TextureCharacteristicsManager::addTextureCharacteristics(
 	std::string key,
-	fme::Vector2f const& tileSize,
-	fme::Vector2f oneTexturePoint,
+	Vector2f const& tileSize,
+	Vector2f oneTexturePoint,
 	fme::TileSet* tileSetTarget)
 {
-	std::vector <fme::Vector2f> texturePoints;
+	std::vector <Vector2f> texturePoints;
 	texturePoints.push_back(oneTexturePoint);
 	return addTextureCharacteristics(key, tileSize, texturePoints, -1, tileSetTarget);
 }

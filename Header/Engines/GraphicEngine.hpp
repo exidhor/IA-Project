@@ -12,6 +12,6 @@
 #include "Engines/GraphicEngine/TileSet.hpp"
 #include "Engines/GraphicEngine/TileSetManager.hpp"
 #include "Engines/GraphicEngine/TileSetsDisplayer.hpp"
-#include "Engines/GraphicEngine/Timer.hpp"
+#include "Utilities/Timer.hpp"
 #include "Engines/GraphicEngine/Transformation.hpp"
 #include "Engines/GraphicEngine/TranslationTransformation.hpp"

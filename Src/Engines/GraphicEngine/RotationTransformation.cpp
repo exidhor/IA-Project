@@ -38,7 +38,7 @@ void fme::RotationTransformation::initRotateByAngle(float newSpeedPerSecond, flo
 	m_speedPerSecond = newSpeedPerSecond;
 }
 
-bool fme::RotationTransformation::actualize(double timeSpent, fme::Vector2f const& origin
+bool fme::RotationTransformation::actualize(double timeSpent, Vector2f const& origin
 	, sf::Transform & transformationPoint)
 {
 	if (m_isOn)

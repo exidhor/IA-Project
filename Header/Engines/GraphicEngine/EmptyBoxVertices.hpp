@@ -11,7 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Engines/GraphicEngine/TileSet.hpp"
-#include "Engines/GraphicEngine/Vector2f.hpp"
+#include "Utilities/Vector2.hpp"
 #include "Engines/GraphicEngine/TextureVertices.hpp"
 
 namespace fme

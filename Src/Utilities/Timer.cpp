@@ -1,12 +1,12 @@
-#include "Engines/GraphicEngine/Timer.hpp"
+#include "Utilities/Timer.hpp"
 
-fme::Timer::Timer(double newStartTime)
+Timer::Timer(double newStartTime)
 {
 	m_startTime = newStartTime;
 	m_timeLeft = m_startTime;
 }
 
-bool fme::Timer::removeTime(double timeToRemove)
+bool Timer::removeTime(double timeToRemove)
 {
 	m_timeLeft -= timeToRemove;
 	if (m_timeLeft <= 0)
@@ -16,28 +16,28 @@ bool fme::Timer::removeTime(double timeToRemove)
 	return false;
 }
 
-void fme::Timer::restart(double newStartTime)
+void Timer::restart(double newStartTime)
 {
 	m_timeLeft = newStartTime;
 }
 
-void fme::Timer::setStartTime(double newStartTime)
+void Timer::setStartTime(double newStartTime)
 {
 	m_startTime = newStartTime;
 	m_timeLeft = m_startTime;
 }
 
-double fme::Timer::getStartTime() const
+double Timer::getStartTime() const
 {
 	return m_startTime;
 }
 
-void fme::Timer::restart()
+void Timer::restart()
 {
 	m_timeLeft = m_startTime;
 }
 
-void fme::Timer::softRestart()
+void Timer::softRestart()
 {
 	m_timeLeft += m_startTime;
 	//if m_startTime is bigger than m_timeLeft, it means that
@@ -49,7 +49,7 @@ void fme::Timer::softRestart()
 	}
 }
 
-double fme::Timer::getTimeLeft()
+double Timer::getTimeLeft()
 {
 	return m_timeLeft;
 }

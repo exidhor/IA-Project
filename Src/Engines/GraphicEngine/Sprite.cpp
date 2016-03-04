@@ -89,7 +89,7 @@ void fme::Sprite::setTranslationByTargetPoint(
 	float abscissa, 
 	float ordinate)
 {
-	//fme::Vector2f targetPointCentered(
+	//Vector2f targetPointCentered(
 	//	abscissa + m_quadVertices.getGlobalBounds().width / 2,
 	//	ordinate + m_quadVertices.getGlobalBounds().height / 2
 	//	);
@@ -108,7 +108,7 @@ void fme::Sprite::setTranslationBySpeed(
 {
 	m_translationManager.initBySpeed(
 		timeUntilTheEnd,
-		fme::Vector2f(pixelPerSecondInAbsciss, pixelPerSecondInOrdinate)
+		Vector2f(pixelPerSecondInAbsciss, pixelPerSecondInOrdinate)
 		);
 }
 

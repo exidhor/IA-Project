@@ -39,7 +39,7 @@ void fme::TextureVertices::addVerticesToTheTileSet(TileSet* targetTileSet,
 /*!
 * \return the position of the left-top vertex of the global bounds
 */
-fme::Vector2f fme::TextureVertices::getPosition()
+Vector2f fme::TextureVertices::getPosition()
 {
 	checkUpdateGlobalBounds();
 

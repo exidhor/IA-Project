@@ -11,18 +11,18 @@ int main()
 	moteurGraphique.addTileSet("test", "Res/tileTest.png", 1000, 1);
 
 	std::string nomCleAnimation("vieuxJaune");
-	fme::Vector2f tailleTuile(32, 48);
+	Vector2f tailleTuile(32, 48);
 
 	// preparation necessaire pour la creation des sprites/animations
 	// creation des caracteristiques des textures
 	for (unsigned int indiceLigne = 0; indiceLigne < 4; indiceLigne++)
 	{
 		//creation des points pour les textures/animations
-		std::vector <fme::Vector2f> texturePoints;
+		std::vector <Vector2f> texturePoints;
 
 		for (unsigned int indiceColonne = 0; indiceColonne < 3; indiceColonne++)
 		{
-			texturePoints.push_back(fme::Vector2f(indiceColonne*tailleTuile.x, indiceLigne*tailleTuile.y));
+			texturePoints.push_back(Vector2f(indiceColonne*tailleTuile.x, indiceLigne*tailleTuile.y));
 		}
 
 		// ajout dans le moteur des caracteristiques

@@ -11,7 +11,7 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "Engines/GraphicEngine/TextureCharacteristics.hpp"
-#include "Engines/GraphicEngine/Timer.hpp"
+#include "Utilities/Timer.hpp"
 #include "Engines/GraphicEngine/Sprite.hpp"
 
 namespace fme

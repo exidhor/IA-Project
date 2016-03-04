@@ -102,7 +102,7 @@ void fme::Drawable::addToTileSet()
 * \return	The position of the left top
 *			point of the globalBounds.
 */
-fme::Vector2f fme::Drawable::getPosition()
+Vector2f fme::Drawable::getPosition()
 {
 	return m_vertices->getPosition();
 }
@@ -110,7 +110,7 @@ fme::Vector2f fme::Drawable::getPosition()
 /*!
 * \return	The size of the globalBounds.
 */
-fme::Vector2f fme::Drawable::getGlobalSize()
+Vector2f fme::Drawable::getGlobalSize()
 {
 	return Vector2f(m_vertices->getGlobalBounds().width,
 					m_vertices->getGlobalBounds().height);
@@ -122,17 +122,17 @@ fme::Vector2f fme::Drawable::getGlobalSize()
 *			Update the origin centered.
 * \param	position : the new position
 */
-void fme::Drawable::setPosition(fme::Vector2f const position)
+void fme::Drawable::setPosition(Vector2f const position)
 {
 	// TODO : a deplacer dans le PhysicEngine et enlever
 	// la translation
 
-	fme::Vector2f newOrigin(
+	Vector2f newOrigin(
 		position.x + m_vertices->getGlobalBounds().width / 2,
 		position.y + m_vertices->getGlobalBounds().height / 2
 		);
 
-	fme::Vector2f offset(
+	Vector2f offset(
 		newOrigin.x - m_originCenteredRelative.x,
 		newOrigin.y - m_originCenteredRelative.y
 		);
@@ -187,7 +187,7 @@ void fme::Drawable::setColor(sf::Color const& color)
 */
 void fme::Drawable::move(float offsetX, float offsetY)
 {
-	fme::Vector2f offset(
+	Vector2f offset(
 		offsetX,
 		offsetY
 		);
